@@ -1,0 +1,2629 @@
+{
+  "meta": {
+    "title": "Microservices AI Review",
+    "sections": 14,
+    "subdomains": 113,
+    "total_questions": 340,
+    "scoring": {
+      "Yes": 5,
+      "No": -5,
+      "NA": 0,
+      "weightage": {
+        "H": 5,
+        "M": 3,
+        "L": 1
+      },
+      "scale": "0-5 per domain"
+    },
+    "maturity_drivers": [
+      "Mandatory",
+      "Required",
+      "Nice to have"
+    ]
+  },
+  "checklist": [
+    {
+      "criteria": "12 Factor Principles",
+      "description": "12 factor principles when applied to application development  ensures that apps are basically isolated processes that :\nHave a clean contract with the underlying operating system, offering maximum portability between execution environments;\nAre suitable for deployment on modern cloud platforms, obviating the need for servers and systems administration;\nMinimize divergence between development and production, enabling continuous deployment for maximum agility;\nAnd can scale up without significant changes to tooling, architecture, or development practices.",
+      "best_practices": "I. Codebase - One codebase tracked in revision control, many deploys\nII. Dependencies - Explicitly declare and isolate dependencies\nIII. Config - Store config in the environment\nIV. Backing services - Treat backing services as attached resources\nV. Build, release, run - Strictly separate build and run stages\nVI. Processes - Execute the app as one or more stateless processes\nVII. Port binding - Export services via port binding\nVIII. Concurrency - Scale out via the process model\nIX. Disposability - Maximize robustness with fast startup and graceful shutdown\nX. Dev/prod parity - Keep development, staging, and production as similar as possible\nXI. Logs - Treat logs as event streams\nXII. Admin processes - Run admin/management tasks as one-off processes",
+      "reference": "https://12factor.net/",
+      "domain": "Microservices foundation",
+      "section": "Microservices Implementation",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Does your infrastructure support centralized logging by aggregating log from multiple processes?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does environments similarity exist between dev, test and production?",
+          "weightage": "H"
+        },
+        {
+          "question": "Does you app support graceful shutdown by handling SIGTERM and SIGKILL? ",
+          "weightage": "M"
+        },
+        {
+          "question": "Does you app support fast startup in few seconds?",
+          "weightage": "H"
+        },
+        {
+          "question": "Does your infrastructure support rapid elasticity through horizontal scaling?",
+          "weightage": "H"
+        },
+        {
+          "question": "Is your app stateless and does not depend on any specific affinity for subsequent processesing of requests?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is application CI/CD pipeline confirming to separate build, release and run stages. Build stages would bundle the application and a release stage would deploy the app with enviroment specific config.",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you see environment specific configuration maintained as a separate repository and being injected into application during deployment process.",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you see separation between application code and configuration.",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you see evidence of dependencies being isolated, distributed and eventually bundled when building the application? Example maven or package manager based application builds.",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you see that same code base moves up the environment chain as part of deployment process?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you see one code base per microservice?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you see several clear evidence of 12 factor principles being applied?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Modern Tool Chain (CI/CD)",
+      "description": "Modern set of tool chain ensure that your changes are automatically deployed across environment quickly and predictably.",
+      "best_practices": "Per Microservices Ci/CD\nDevops Automation Integrated Tool set implemented across all aspects of Continuous Business planning, Collaborative development, Continuous Integration, Continuous Release & Deployment, Continuous Testing, Continuous Monitoring, Continuous feedback and Optimization",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Implementation",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Have you implemented SRE (Site Reliability Enginnering) practices within your application?",
+          "weightage": "L"
+        },
+        {
+          "question": "Do you quantitively measure effectiveness of your CI/CD pipelines and generate matrix that helps your continuously improve development and Operational KPIs.",
+          "weightage": "M"
+        },
+        {
+          "question": "Have you implemented continues business monitoring for Business KPIs?",
+          "weightage": "H"
+        },
+        {
+          "question": "Have you implemented continues monitoring practices for monitoring/alerting of application, interfaces and infrastructure components.",
+          "weightage": "H"
+        },
+        {
+          "question": "Does your pipeline support automated security testing within your CI/CD pipelines?",
+          "weightage": "L"
+        },
+        {
+          "question": "Does your pipeline support automated performance testing within your CI/CD pipelines?",
+          "weightage": "L"
+        },
+        {
+          "question": "Does your pipeline support Automated and Continuous functional testing within your CI/CD pipelines?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you have automated quality gates within different stages of your deployment on an automated CI/CD pipeline?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are your deployments automated with CI/CD pipeline?",
+          "weightage": "H"
+        },
+        {
+          "question": "Have you implemented per microservice CI/CD?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Elastic Infrastructure available",
+      "description": "Ability to increase or decrease infrastructure on demand to support business spikes",
+      "best_practices": "Cloud deployments (Public, Private, Hybrid)",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Implementation",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Does your application infrastructure support multi-cloud deployments?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you have fine grained controls over automated scaling parameters such as memory, CPU?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does your infrastructure support automated scalability?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you have the ability to rapidly and consistently scale up/down your microservices application infrastcuture based on business needs?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are you microservices infrastructure backend by cloud?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Cloud Native Patterns",
+      "description": "Multi Cloud application development. \nMicroservices architecture processes and patterns are fully established and Continously Optimizing. ",
+      "best_practices": "Microservices (Business Microservices, Integration/Adapter Microservices, Caching, Polyglot)\n12 factor abstraction, Restful APIs\nCircuit breaker\nService Registery and discovery\nModern Web Architecture \nSelf-healing\nBackend for FrontEnd \nSingle Page Application\nCentralized Logging\nDistributed Tracing\nAPI Gateway\nEvent Driven\nCaching\nPolyglot",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Implementation",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are eligible cloud native patterns have been implemented and being optimized specific to client scenario. Few patterns have been tweaked to client needs or available infrastructure.",
+          "weightage": "H"
+        },
+        {
+          "question": "Are microservices appropriately secured when being accessed by other microservices within the same application, internal applications within the enterprise or external applications.",
+          "weightage": "M"
+        },
+        {
+          "question": "Are interfaces and capabilities well defined, documented and contuniously updated",
+          "weightage": "L"
+        },
+        {
+          "question": "Do microservices communicate with each other as network APIs?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are cross cutting concerns and common capabilities implemented as separated adapter microservices and not duplicated across multiple microservices?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are your microservices decomposed as business capabilities leveraging domain driven design.",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Microservices Governance",
+      "description": "Decentralized Governance",
+      "best_practices": "Independent services owned by smaller teams\nSmaller Multifunctional devops teams\nPolygolt programming\nContract driven development with backward compatibility\nServices catalog",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Implementation",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Is your infrastructure capabilities support the speed and expectations business and enterprise transformation in terms of agility, speed to market.",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you see yourself as a multi functional team providing full stack coverage for your supported microservices?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are your microservices owned and supported by smaller teams? ",
+          "weightage": "H"
+        },
+        {
+          "question": "Is there an enterprise service catalog?",
+          "weightage": "M"
+        },
+        {
+          "question": "Did you had a choice of runtime and persistence capabilities that enabled you to select the right technology for the right use case?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Containerization",
+      "description": "Package each microservice as an immutable, self-contained container image for portability and consistent runtime behavior across environments.",
+      "best_practices": "Use minimal base images, run as a non-root user, and build with multi-stage builds. Version images and store them in a registry. Keep state and config out of the image. Scan images for vulnerabilities before promotion.",
+      "reference": "https://microservices.io/patterns/deployment/service-per-container.html",
+      "domain": "Microservices foundation",
+      "section": "Microservices Implementation",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are your microservices packaged as immutable container images?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do your container images follow best practices such as minimal base image, non-root user, and multi-stage builds?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are container images versioned and stored in a container registry?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are images scanned for vulnerabilities before being promoted to higher environments?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do containers externalize all state and configuration rather than baking it into the image?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Container Orchestration",
+      "description": "Run and manage containerized microservices on an orchestration platform that handles scheduling, scaling, self-healing, and isolation.",
+      "best_practices": "Leverage Kubernetes (or equivalent). Define resource requests/limits per service, configure horizontal autoscaling, enforce workload security context (least privilege), and isolate environments/teams with namespaces.",
+      "reference": "https://kubernetes.io/docs/concepts/",
+      "domain": "Microservices foundation",
+      "section": "Microservices Implementation",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are your microservices deployed and managed by a container orchestration platform such as Kubernetes?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you define resource requests and limits (CPU/memory) for each service?",
+          "weightage": "H"
+        },
+        {
+          "question": "Have you configured horizontal autoscaling based on load?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are workload/pod security policies such as least privilege and security context enforced?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you use namespaces or equivalent isolation between environments and teams?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "GitOps and Infrastructure as Code",
+      "description": "Define infrastructure declaratively and drive deployments from version control so the desired state is auditable and reproducible.",
+      "best_practices": "Define infrastructure as code (Terraform, Helm, Kustomize). Drive deployment via GitOps where Git is the source of truth (ArgoCD, Flux). Detect and reconcile drift automatically. Peer-review and version control all infra changes.",
+      "reference": "https://opengitops.dev/",
+      "domain": "Microservices foundation",
+      "section": "Microservices Implementation",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Is your infrastructure defined declaratively as code, for example with Terraform, Helm, or Kustomize?",
+          "weightage": "H"
+        },
+        {
+          "question": "Is deployment driven by a GitOps workflow where Git is the source of truth, for example ArgoCD or Flux?",
+          "weightage": "M"
+        },
+        {
+          "question": "Can you detect and reconcile configuration drift automatically?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are infrastructure changes peer-reviewed and version controlled?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Supply Chain Security",
+      "description": "Secure the build-and-release supply chain so that what is deployed is trusted, traceable, and free of known vulnerabilities.",
+      "best_practices": "Generate a Software Bill of Materials (SBOM). Scan dependencies and images for known vulnerabilities in CI. Sign and verify images before deployment. Pin and control the provenance of build dependencies and base images.",
+      "reference": "https://slsa.dev/",
+      "domain": "Microservices foundation",
+      "section": "Microservices Implementation",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Do you generate and track a Software Bill of Materials (SBOM) for your services?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are third-party dependencies scanned for known vulnerabilities in your CI pipeline?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are container images signed and verified before deployment?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you pin and control the provenance of build dependencies and base images?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Service Registration and Discovery",
+      "description": "Calling applications or Clients should not really be worried about where microservices are hosted. Depending on the workload, microservices will scale up and tier down. We need a way to be able to automatically register new instances, deregister instances when unavailable, loosely couple clients without dependency on where our services are hosted.",
+      "best_practices": "Implementation Guidance - Eureka is recommended from Spring ecosystem standpoint. There are other capabilities as well such as Consul, Zookeeper.\nService Discovery is one of the key tenets of a microservice based architecture. Eureka is the Netflix Service Discovery Server and Client. The server can be configured and deployed to be highly available, with each server replicating state about the registered services to the others.\nWhen your microservices startup, they register with Eureka (assuming Eureka service is already running) and provide meta-data, such as host and port, health indicator URL, home page, etc. Eureka receives heartbeat messages from each instance belonging to a service. If the heartbeat fails over a configurable timetable, the instance will be removed from the registry.\nEureka metrics can be easily monitored using the eureka dashboard supported by the Eureka Server microservice application \nAdditional Information\nMany PAAS Platforms also provide inbuilt Services Registry and discovery.\n",
+      "reference": "https://microservices.io/patterns/service-registry.html\n\nhttps://istio.io/",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are you leveraging framework/library or container platform capabilities to implement service registration and discovery? ",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you have the ability to perform health checks for your microservices through a centralized dashboard",
+          "weightage": "M"
+        },
+        {
+          "question": "Have you implemented client side or server side service discovery?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you perform service discovery based microservices lookup?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do your microservices register themselves to a central registry during startup",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Fault Tolerance",
+      "description": "Design for failures for down stream service.\nWhat happens on failures: Degrade functionality or Default functionality\nDesign to fail fast and self-heal",
+      "best_practices": "Implementation Guidance - Hystrix (Spring), Istio\nHystrix implements Circuit Breaker pattern allowing to identify and manage downstream network failures and latency better. This helps to fail fast and recover allowing systems to become self-healing\nWith Hystrix backed up with several default configuration, our microservices can create fallback functionality when the default functionality degrades or failures.\nHystrix metrics can be monitored independently to a monitoring dashboard. With multiple microservices built using Hystrix, all metrics can be pushed and aggregated to a Turbine dashboard.",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are you leveraging framework/library or container platform capabilities to implement fault tolerance? ",
+          "weightage": "M"
+        },
+        {
+          "question": "Is timeout implemented for backend dependencies?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are exponential backoff retries implemented for backend dependencies?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are you leveraging framework/library or container platform capabilities to implement fault tolerance? ",
+          "weightage": "M"
+        },
+        {
+          "question": "Have microservices implemented bulkhead pattern?",
+          "weightage": "H"
+        },
+        {
+          "question": "Have your microservices implemented Circuit breaker pattern?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Service proxy/API Gateway",
+      "description": "Provide capabilities such as server side load balancing\nRouting\nEdge Security\nAnalytics, Insights\nReverse Proxy",
+      "best_practices": "Implementation Guidance - Zuul (Spring), Istio\nIt is a single entry point into the system, used to handle requests by routing them to the appropriate backend service or by invoking multiple backend services and aggregating the results. Also, it can be used for authentication, insights, stress and canary testing, service migration, static response handling, active traffic management.\nSpring Cloud has created an embedded Zuul proxy to ease the development of a very common use case where a UI application wants to proxy calls to one or more back end services. This feature is useful for a user interface to proxy to the backend services it requires, avoiding the need to manage CORS and authentication concerns independently for all the backend.",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are you leveraging framework/library or container platform capabilities to implement API Gateway or Service proxy? ",
+          "weightage": "H"
+        },
+        {
+          "question": "Can you perform intelligent routing of incoming traffic to your microservices?",
+          "weightage": "M"
+        },
+        {
+          "question": "Can you load balance your incoming traffic to your microservice? ",
+          "weightage": "H"
+        },
+        {
+          "question": "Are you peforming A/B testing through the use of intelligent routing for your microservices?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you have a consistent URL for others to access your service without depending on knowing the physical location of your services and where they are running",
+          "weightage": "H"
+        },
+        {
+          "question": "Are your microservices secure when being accessed by other microservices within the same application/cluster?",
+          "weightage": "L"
+        },
+        {
+          "question": "Are your microservices secure from external (outside enterprise) access? ",
+          "weightage": "H"
+        },
+        {
+          "question": "Are your microservices secure from internal (within enterprise) access? ",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Externalized Configuration",
+      "description": "Externalize application configuration, secure it and be able to refresh application configuration without a need to restart application.\n",
+      "best_practices": "Implementation Guidance - Spring Cloud Config\nSpring Cloud Config is horizontally scalable centralized configuration service for distributed systems. It uses a pluggable repository layer that currently supports local storage, Git, and Subversion. \nWith Spring Cloud Config, We can change app configuration dynamically without having to start the application.\nSpring Cloud Config also provides out of the box capabilities to secure configuration by allowing you to encrypt and decrypt configuration either on server or client side using JCE (Java Cryptography Extensions)\nConfiguration files can be nested within folders and visible to the Config Server.",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Is your devops pipeline enabled to inject runtime environmental and sensitive configuration when building or deploying microservices?",
+          "weightage": "H"
+        },
+        {
+          "question": "Is sensitive information such as userid, passwords version controlled?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is sensitive information such as userid, passwords encypted",
+          "weightage": "M"
+        },
+        {
+          "question": "Are environmental configuration version controlled?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are environmental configuration externalized?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Service Authentication and authorization",
+      "description": "Use Auth Server for user authorization as well as for secure machine-to-machine communication inside a perimeter.",
+      "best_practices": "Implementation Guidance - Spring Security, Istio\nThere are multiple other way to implement services authorization, refer security guidance above\nSpring Cloud Security provides convenient annotations and auto configurations to make this really easy to implement from both the server and client side.",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are your microservices secure when being accessed by other microservices within the same application/cluster?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are your microservices secure from external (outside enterprise) access? ",
+          "weightage": "H"
+        },
+        {
+          "question": "Are your microservices secure from internal (within enterprise) access? ",
+          "weightage": "M"
+        },
+        {
+          "question": "Are you leveraging framework/library or container platform capabilities to implement microservices security? ",
+          "weightage": "H"
+        },
+        {
+          "question": "Can you perform intelligent routing of incoming traffic to your microservices?",
+          "weightage": "H"
+        },
+        {
+          "question": "Can you load balance your incoming traffic to your microservice? ",
+          "weightage": "H"
+        },
+        {
+          "question": "Are you peforming A/B testing through the use of intelligent routing for your microservices?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Distributed Tracing",
+      "description": "Ability to trace a particular request end to end across multiple micro services and be able to find latency.",
+      "best_practices": "Implementation Guidance - Spring Cloud Sleuth + Zipkin  (Spring), Istio\nSpring Cloud Sleuth allows to have all the core application interaction patterns instrumented automatically. Its even taken care when using hystrix, zuul, Rest templates for Http endpoints and others. \nTracing systems that our application to collect process and present data from tracers, and so we have all these tracers coming out of Spring Cloud Sleuth. Zipkin allows to visualize trace outcomes from Cloud Sleuth by collecting timing data and making it easy to see them, letting you query them, visualizing them. \nZipkin also shows service dependencies. ",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are you leveraging framework/library or container platform capabilities to implement Distributed tracing? ",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you add a coorelation Id within your payload to support distributed tracing",
+          "weightage": "M"
+        },
+        {
+          "question": "Are you persisting tracing information for future analysis and troubleshooting?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you have a distributed tracing dashboard?",
+          "weightage": "L"
+        },
+        {
+          "question": "Are you able to trace a particular business transaction end to end across your microservices?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Centralized Logging",
+      "description": "Ability to aggregate logs to a centralized location, be able to filter logs (if needed),query/visualize logs and persist logs to a persistent store.",
+      "best_practices": "Implementation Guidance - These are several OpenSource and product based implementation for this. A popular one is ELK Stack – ElasticSearch, Logstash and Kibana\nApplication will store logs into a log file. Logstash will read and parse the log file and ship log entries to an Elasticsearch instance. Finally, we will use Kibana 4 (Elasticsearch web frontend) to search and analyze the logs. ",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Do you have the ability to run ad-hoc queries against your microservices application logs?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you have the ability to visualize logs on multiple dimensions as a time series information? ",
+          "weightage": "L"
+        },
+        {
+          "question": "Do you have the ability to search/filter logs? ",
+          "weightage": "H"
+        },
+        {
+          "question": "Are you logs aggregated to a centralized repository? ",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you have a standard logging format across all your microservices? ",
+          "weightage": "H"
+        },
+        {
+          "question": "Are you logging to standard.out?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Client side load balancing",
+      "description": "The problem of server side load balancing is if one or more servers stop responding, we have to manually remove those servers from the load balancer by updating the IP table of the load balancer. Another problem is that we have to implement a failover policy to provide the client with a seamless experience.",
+      "best_practices": "Implementation Guidance - Ribbon (for Spring framework) or Istio\nIf one microservice wants to communicate with another microservice, it generally looks up the service registry using DiscoveryClient and Eureka server returns all the instances of the calling microservice to the caller service. It isa caller service headache which instance it calls. Here, client side load balancing stepped in. Client side load balancing maintains an algorithm like round robin or zone specific, by which it can invoke instances of calling services. The advantage is s service registry always updates itself; if one instance goes down, it removes it from its registry, so when the client side load balancer talks to the Eureka server, it always updates itself, so there is no manual intervention- unlike server side load balancing- to remove an instance.\nAnother advantage is, as the load balancer is in the client side, you can control its load balancing algorithm programmatically. Ribbon provides this facility.",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are you leveraging framework/library or container platform capabilities to implement client side load balancing? ",
+          "weightage": "M"
+        },
+        {
+          "question": "Is your client side load balancing integrated with service discovery?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are you leveraging intelligent routing as part of client side load balancing?",
+          "weightage": "M"
+        },
+        {
+          "question": "Have you implemented client side load balancing?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Centralized Monitoring",
+      "description": "Ability to monitor system (multiple microservices) from a centralized place.",
+      "best_practices": "Implementation Guidance - These are several OpenSource and product based implementation for this.\nApplications health check, response monitoring, time statistics, alert management, SLA management can all be done from a central place.",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Do you have automated alert management to page out support when anomolies occur?",
+          "weightage": "M"
+        },
+        {
+          "question": "Can you monitor your business transactions through a centralized dashboard and identify anomolies?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you have the ability to troubleshoot production issues quickly by leveraging monitoring dashboards?",
+          "weightage": "M"
+        },
+        {
+          "question": "Can you monitor response times for your microservices enabling SLA management?",
+          "weightage": "M"
+        },
+        {
+          "question": "Can you monitor health checks for your microservices?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you have one/more monitoring dashboards to manage your microservices?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Traffic Management and Intelligent Routing",
+      "description": "Ability to do A/B testing, canary rollouts, and staged rollouts with percentage-based traffic splits",
+      "best_practices": "Implementation Guidance - Istio (if containor platform) provides these capabilities\nIstio’s easy rules configuration and traffic routing lets you control the flow of traffic and API calls between services. Istio simplifies configuration of service-level properties like circuit breakers, timeouts, and retries, and makes it a breeze to set up important tasks like A/B testing, canary rollouts, and staged rollouts with percentage-based traffic splits.\nWith better visibility into your traffic, and out-of-box failure recovery features, you can catch issues before they cause problems, making calls more reliable, and your network more robust – no matter what conditions you face.",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Are you leveraging framework/library or container platform capabilities to manage traffic through intelligent routing ? ",
+          "weightage": "H"
+        },
+        {
+          "question": "Have you implemented Intelligent routing to support A/B testing or canary rollouts?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Application Metrics and Golden Signals",
+      "description": "Instrument services to emit application-level metrics so health and performance can be measured and alerted on.",
+      "best_practices": "Expose metrics via Prometheus/OpenMetrics endpoints. Track the golden signals (latency, traffic, errors, saturation) per service. Capture RED metrics for request-driven services and USE metrics for resources. Visualize on dashboards.",
+      "reference": "https://sre.google/sre-book/monitoring-distributed-systems/",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Do your microservices expose application metrics, for example Prometheus or OpenMetrics endpoints?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you track the golden signals (latency, traffic, errors, saturation) per service?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are application and business metrics visualized on dashboards?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you capture RED and/or USE metrics appropriate to each service type?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Service Level Objectives and Error Budgets",
+      "description": "Define measurable reliability targets and use error budgets to balance reliability against delivery velocity.",
+      "best_practices": "Define SLIs and SLOs for critical services. Track error budgets and use them to govern release pace. Alert on and review SLO breaches.",
+      "reference": "https://sre.google/workbook/implementing-slos/",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Have you defined SLIs and SLOs for your critical services?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you track error budgets and use them to balance reliability versus delivery speed?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are SLO breaches alerted on and reviewed?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Unified Observability and OpenTelemetry",
+      "description": "Correlate logs, metrics, and traces into a single observability discipline using vendor-neutral instrumentation.",
+      "best_practices": "Correlate the three pillars through a shared trace ID. Use a vendor-neutral standard such as OpenTelemetry. Aggregate exception/error tracking centrally. Enable fast navigation from an alert to the relevant traces and logs.",
+      "reference": "https://opentelemetry.io/",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are logs, metrics, and traces correlated through a common identifier such as a trace ID?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are you using a vendor-neutral instrumentation standard such as OpenTelemetry?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you have exception and error tracking aggregated in a central place?",
+          "weightage": "M"
+        },
+        {
+          "question": "Can you navigate from an alert to the relevant traces and logs quickly?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Health Check API",
+      "description": "Expose endpoints that report whether a service instance is alive and ready, so the platform can route and restart correctly.",
+      "best_practices": "Provide liveness and readiness endpoints. Have readiness verify critical downstream dependencies. Ensure the orchestration platform consumes these for traffic routing and restarts.",
+      "reference": "https://microservices.io/patterns/observability/health-check-api.html",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Does each microservice expose health-check endpoints for liveness and readiness?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do readiness checks verify critical downstream dependencies?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are health-check endpoints consumed by the orchestration platform for routing and restarts?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Service-to-Service Security (mTLS and Zero Trust)",
+      "description": "Secure internal traffic by encrypting and mutually authenticating service-to-service communication, trusting identity rather than network location.",
+      "best_practices": "Encrypt service-to-service traffic with mTLS. Authenticate workload identity, not just network location. Adopt a zero-trust posture where no internal traffic is implicitly trusted. Enforce least-privilege authorization between services.",
+      "reference": "https://www.nist.gov/publications/zero-trust-architecture",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Is service-to-service traffic encrypted in transit, for example with mTLS?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do services authenticate each other's workload identity rather than relying on network location?",
+          "weightage": "H"
+        },
+        {
+          "question": "Have you adopted a zero-trust posture where no internal traffic is implicitly trusted?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is least-privilege authorization enforced between services?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Secrets Management",
+      "description": "Manage credentials, keys, and tokens through a dedicated secrets system rather than storing them in code, images, or config files.",
+      "best_practices": "Store secrets in a dedicated manager (Vault, cloud KMS/secret manager). Keep secrets out of source control and images. Rotate secrets and audit access. Inject secrets at runtime rather than at build time.",
+      "reference": "https://owasp.org/www-project-secrets-management/",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are secrets such as credentials, keys, and tokens stored in a dedicated secrets manager, for example Vault or a cloud KMS?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are secrets kept out of source control and container images?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are secrets rotated and is access to them audited?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are secrets injected at runtime rather than baked into builds?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Rate Limiting and Throttling",
+      "description": "Protect services from overload and abuse by limiting request rates and shedding load under sustained pressure.",
+      "best_practices": "Enforce rate limiting/throttling at the gateway and/or service. Apply per-client quotas where appropriate. Use backpressure or load shedding under sustained overload.",
+      "reference": "https://microservices.io/patterns/reliability/circuit-breaker.html",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Do you enforce rate limiting or throttling to protect services from overload and abuse?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are quotas applied per client or consumer where appropriate?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you apply backpressure or load shedding under sustained overload?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Chaos Engineering and Resilience Testing",
+      "description": "Proactively validate that the system withstands failure by injecting faults and verifying recovery behavior.",
+      "best_practices": "Run fault-injection or chaos experiments. Validate failover, retries, and circuit breakers under realistic failure conditions. Make resilience testing part of the delivery process.",
+      "reference": "https://principlesofchaos.org/",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Do you proactively test resilience through fault injection or chaos experiments?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you validate failover, retries, and circuit breakers under realistic failure conditions?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are resilience tests part of your delivery process?",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "Service Mesh",
+      "description": "Offload cross-cutting communication concerns (mTLS, traffic policy, observability) to a mesh layer rather than embedding them in each service.",
+      "best_practices": "Adopt a service mesh such as Istio or Linkerd where complexity warrants it. Use the mesh to provide mTLS, traffic policy, and observability transparently to application code.",
+      "reference": "https://istio.io/",
+      "domain": "Microservices foundation",
+      "section": "Microservices Architecture Tenants",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Are you leveraging a service mesh such as Istio or Linkerd for cross-cutting concerns?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does the mesh provide mTLS, traffic policy, and observability without changes to application code?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "BFF (Backend for FrontEnd)",
+      "description": "Implement BFF to isolate User Experience for backing microservices. Allows to represent a channel-specific service interface that is consistent with an\noverall microservices architecture but allows enough uniqueness that it can be adapted to the needs of a specific client type",
+      "best_practices": "Pattern that allows front-end teams to deploy their own backend aggregator service (the BFF) that handles the entirety of external service calls needed for their specific user experience\nUsually built for a specific browser, mobile platform, or IOT device. User experience and BFF built in the same language to increase application performance\nMicroservices break one set of functionality into multiple APIs. The easiest way for a client to interface with a server is through a single API. Different types of clients—browser, mobile, CLI—want different APIs for the same functionality. Business logic is rarely specific to a single client type. It should be implemented such that all client types can share it.\nA BFF can perform the following actions:\n• Orchestration – It can orchestrate several calls to business microservices that result from a single client action.\n• Translation – It can translate the results of a microservice into a channel-specific representation that more cleanly maps to the needs of the ux of that client.\n• Filtering – It can filter results from a business microservice that are not needed by a particular client type.",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Is your BFF responsible for managing security (authentication and authorization) before the calls access business microservices? ",
+          "weightage": "H"
+        },
+        {
+          "question": "Is your BFF responsible for managing caching in support of what is mostly used by your front-end?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is your BFF service responsible for filtering results from business microservice to support in support of only what is required on the front-end?",
+          "weightage": "H"
+        },
+        {
+          "question": "Is your BFF service responsible for orchestration with other business microservices?",
+          "weightage": "M"
+        },
+        {
+          "question": "For multiple Frontends, have you implemented different BFF services that acts as a gateway to support that particular front-end?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Modern Web architecture",
+      "description": "Design an application that meets the needs of your users, while still working within the capabilities of the different interface devices that now exist?",
+      "best_practices": "Adopt a Modern Web Architecture that combines intelligent front-end components with general purpose back-end components.",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Your front-end should not depend on any session capabilities to be supported on the backend",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you have a modern web architecture that is accessing your microservices via web APIs?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Single Page Application",
+      "description": "Simplifies the frontend experience with the trade-off of more responsibility on the backing services",
+      "best_practices": "Web-based interface that provides the user with a single entry point to the application and never reloads the page or navigates away from that initial experience\nBuilt using a combination of HTML, CSS, and JavaScript framework such as React, Angular which are natively implemented/supported in modern browsers. Store page state within the client and connect to the backend through REST services. This approach is called the “Single Page Application” because all of the HTML, CSS and JavaScript code necessary for a complex set of business functions, which may represent multiple logical screens or pages, is retrieved as a single page request.\nThe main benefit of the Single Page Application approach is that it allows much more responsive and intuitive application designs than the dynamic page approach. ",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are you leveraging client side data model that allows you to eliminate server side session implementation.",
+          "weightage": "M"
+        },
+        {
+          "question": "Are you taking advantages of new/improved browser based capabilities such as caching to improve user experience.",
+          "weightage": "M"
+        },
+        {
+          "question": "Are you leveraging SPA (Single Page Application) to better manage your web presentation tier, along with providing a more intutive/responsive experience to the users?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Native Mobile Application",
+      "description": "You would like to provide the most optimized user experience on a mobile device and take\nadvantage of the features that make mobile computing unique?",
+      "best_practices": "Write a Native Mobile Application for each of the two major platforms (iOS and Android).\nWhile Single Page Applications provide a good user interface that can be adapted to different screen sizes and orientations using Responsive Design no browser-based application can take advantage of all the features and capabilities of a mobile device. What’s more, even though advances have been made in the speed and performance of Javascript in many browsers, the performance of browser-based applications still noticeably falls behind those of native applications",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Have you implemented a native mobile application over SPA to ensure better performance and a more feature rich experience for your end users",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "Adapter Microservices",
+      "description": "How do you handle translation of existing service implementations into good microservices APIs.  Your microservices want to incorporate existing services (e.g. SOAP, JMS, or mainframe-based services) but their APIs do\nnot use the RESTful or queue-based approach that is consistent with the microservices architecture.",
+      "best_practices": "Adapter Microservice that converts the existing service’s nonmicroservice API to an API that client microservies will expect. An Adapter Microservice follows the Adapter pattern in that it converts one API to another. Wraps and translates existing services into an entity-based REST interface. Treats each new entity interface as a microservice and builds, manages, and scales it independently. This helps when:\nIf you have existing services that run well enough as is, you don’t want to rewrite them, you want to reuse them instead.\nChanging the APIs of existing services can break existing clients.",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Have you implemented adapter services to integrate with legacy backends that cannot directly integrate with your microservices?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Co-Existence and Stangler Pattern",
+      "description": "Provides a consistent way to migrate a large monolith application into microservices architecture in multiple attempts where for sometime both the monolith and existing application co-exist.",
+      "best_practices": "The Strangler pattern helps us manage the refactoring of a monolithic application in stages.\nDivide an application into different functional domains, and replace those domains with a new microservices-based implementation one domain at a time. This creates two separate applications that live side by side in the same URI space. \nOver time, the newly refactored application “strangles” or replaces the original application until finally you can shut off the monolithic application. Thus, the Strangler Application steps are transform, coexist, and eliminate.\n",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Does your adapter services allow you to perform co-existence and data replication?",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "Domain Driven Design",
+      "description": "Develop software for complex needs by deeply connecting the implementation to an evolving model of the core business concepts.",
+      "best_practices": "1. Focus on the core domain and domain logic.\n2. Base complex designs on models of the Domain (Entity, Aggregate Root  ,Bounded context etc.)\n3. Domain layer should have a well defined boundary to avoid the corruption of the layer from non-core domain layer concerns such as vendor-specific translations, data filtering, transformations, etc",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Have you modelled your microservices to support domain deiven design and bounded context principles? ",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you duplicate data between microservices to support bounded context?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you publish data that different microservices can consume? ",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you Constantly collaborate with domain experts, in order to improve the application model and resolve any emerging domain-related issues?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are your Domain elements designed to hold the domain state and behavior correctly?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Business Microservice",
+      "description": "Guides Where to put business logic in an application built using a Microservices architecture.",
+      "best_practices": "Performs one comprehensive business function\nImplementation to decide how to implement a microservice and how that relates to other services in the overall application\nEach microservice should implement one complete business function.\nThe primary quality of a business function is that it implements or otherwise provides business logic.\nBusiness logic should be encapsulated inside an API.",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Do you have well defined business microservices?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Caching",
+      "description": "Improve the performance of your application or microservice when it makes many repeated calls to services",
+      "best_practices": "Use Results Cache can be as simple as a Key-Value Store (either in-memory or in a Scalable Store). \nDetermining what to cache is often as difficult as setting up a cache itself. A common approach that is sometimes taken is to try to reproduce the data in a database locally to the application that is making requests of that data. The logic here is that if the problem is that database calls are expensive and slow, then by making those calls locally (perhaps in-memory) then you can reduce that overhead. Another concern to remediate is to ensure that information does not become stale. TTL (Time to Live) is a good strategy to determine information staleness that results in information purging and new cached data being loaded.",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Do you have a caching implementation to improve your microservices performance?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you have a distributed cache? i.e. your cache is not implemented locally?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you see performance challenges with your microservices especialy for end to end business transactions?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Integration Mediation Layer",
+      "description": "When you would like one application (part of a larger suit that accomplishes a business process) to modernize without impacting other interfacing applications which may modernize at their own pace.",
+      "best_practices": "Leverage integration mediation layer that supports enterprise modernization efforts around business process modernization within constrains of a siloed culture where budgets and organization boundaries derive multi speed IT decisions and limit speed of innovation. ",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Are you leveraging an integration mediation layer to support incremental business process modernization",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "Service Pattern",
+      "description": "How to manage IT operations that do not conceptually belong to any specific object/entity or aggregate into an entity-based approach.",
+      "best_practices": "Services patterns offer a way to map operations that do not conceptually belong to any specific object/entity or aggregate into an entity-based approach. This pattern can be used login service, authentication, authorization and logging. Model such objects as standalone interfaces called services that follow these rules:\nThey should be stateless.\nThe service’s interface is defined in terms of other elements of your domain model (entities and value objects).\nThe service refers to a domain concept that does not naturally correspond to any particular entity or value object.\n",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Have you implemented common services as microservices that do not belong to a particular business domain?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Persistent Storage and Polyglot Persistence",
+      "description": "Decide on persistence storage for your microservices",
+      "best_practices": "Database Per Service (Recommended) \nShared Databases supporting multiple services\nEach of these approaches have their own pros and cons. Database per service is the recommended approach as it helps ensure that the services are loosely coupled. Changes to one service’s database does not impact any other services. Each service can use the type of database that is best suited to its needs. \nDatabase per service also brings in complexity in terms of transactional consistency as Implementing business transactions that span multiple services is not straightforward. Also, Implementing queries that join data that is now in multiple databases is challenging.",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Have you implemented the right database strategy per microservice? Shared db v per microservice db",
+          "weightage": "H"
+        },
+        {
+          "question": "Have you implemented polyglot persistence for appropiate use cases?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Distributed Transactions",
+      "description": "Monlith applications implemented transactions using 2 phase commit that worked on business entities at the same time which now need to be separated out into multiple microservices",
+      "best_practices": "\nSaga - A saga is a sequence of local transactions where each transaction updates data within a single service. The first transaction is initiated by an external request corresponding to the system operation, and then each subsequent step is triggered by the completion of the previous one. There are a couple of different ways to implement a saga transaction,\n\nEvents/Choreography: When there is no central coordination, each service produces and listen to other service’s events and decides if an action should be taken or not.\n\nCommand/Orchestration: when a coordinator service is responsible for centralizing the saga’s decision making and sequencing business logic \n",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "When distributed transactions are applicable, have you implemented choreography or orchestration patterns?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Event-Driven Architecture and Messaging",
+      "description": "Use asynchronous events/messages to decouple services, improve resilience, and avoid tight synchronous call chains.",
+      "best_practices": "Communicate asynchronously via events where appropriate, using a broker or event streaming platform (Kafka, RabbitMQ, Pulsar). Define, version, and govern event schemas (schema registry, AsyncAPI). Handle out-of-order and duplicate events gracefully.",
+      "reference": "https://microservices.io/patterns/data/event-driven-architecture.html",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Do your microservices communicate asynchronously via events or messages where appropriate?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are you using a message broker or event streaming platform such as Kafka, RabbitMQ, or Pulsar?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are event schemas defined, versioned, and governed, for example via a schema registry or AsyncAPI?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do consumers handle out-of-order and duplicate events gracefully?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are events used to decouple services and avoid synchronous call chains?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Event Sourcing and CQRS",
+      "description": "Where appropriate, separate read and write models and persist state as a sequence of events to enable scaling, auditability, and temporal queries.",
+      "best_practices": "Apply CQRS to separate read and write responsibilities. Use event sourcing to persist state changes as an immutable event log. Support state rebuilds and temporal/audit queries from that log.",
+      "reference": "https://microservices.io/patterns/data/cqrs.html",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Where appropriate, do you separate read and write models using CQRS?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do you persist state changes as an immutable sequence of events (event sourcing)?",
+          "weightage": "M"
+        },
+        {
+          "question": "Can you rebuild state and support temporal or audit queries from the event log?",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "Transactional Messaging (Outbox and Idempotent Consumer)",
+      "description": "Guarantee consistency between local data changes and the messages a service publishes, and tolerate redelivery on the consumer side.",
+      "best_practices": "Use a transactional outbox (with transaction log tailing or polling publisher) so database updates and message publishing are atomic. Make consumers idempotent to tolerate redelivery. Avoid dual-write inconsistency between datastore and broker.",
+      "reference": "https://microservices.io/patterns/data/transactional-outbox.html",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Do you ensure atomicity between database updates and message publishing, for example via a transactional outbox?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are your message consumers idempotent so they tolerate redelivery?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you avoid dual-write inconsistencies between your datastore and the broker?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Inter-Service Communication Styles",
+      "description": "Deliberately choose the right communication style and protocol for each interaction rather than defaulting to chatty synchronous REST everywhere.",
+      "best_practices": "Choose sync (REST/gRPC) vs async (messaging) per use case. Use an efficient protocol such as gRPC for low-latency/high-throughput RPC. Use API Composition or a dedicated query service for cross-service aggregation rather than chatty calls.",
+      "reference": "https://microservices.io/patterns/communication-style/messaging.html",
+      "domain": "Microservices foundation",
+      "section": "Common Microservices app dev Patterns",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Have you deliberately chosen communication styles (synchronous REST/gRPC versus asynchronous messaging) per use case?",
+          "weightage": "H"
+        },
+        {
+          "question": "Where low-latency or high-throughput RPC is needed, do you use an efficient protocol such as gRPC?",
+          "weightage": "M"
+        },
+        {
+          "question": "For aggregation across services, do you use API Composition or a query service rather than many chatty calls?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Blue green deployments",
+      "description": "Ability to reduce application downtime via support for blue green deployments allowing setting up new instances of microservices without impacting existing ones until team is good to migrate of existing version to new version.",
+      "best_practices": "Support health check for microservices\nSupport for Draining\nSupport for Switch back\nSupport readiness probe and Liveliness probe for Microservices\nPlatform support to route traffic to new service once Platform confirms that new service is ready to accept traffic ",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Deployment Patterns",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Does your platform support health check (readiness probes) for microservices before declaring deployments successful?",
+          "weightage": "H"
+        },
+        {
+          "question": "Does your platform support health check (liveliness probes) for microservices before declaring deployments successful?",
+          "weightage": "H"
+        },
+        {
+          "question": "Does your platform support blue green deployments",
+          "weightage": "H"
+        },
+        {
+          "question": "Does your Platform support to route traffic to new service once Platform confirms that new service is ready to accept traffic ",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Rolling Upgrades",
+      "description": "Ability to support Rolling upgrades that basically do an inplace migration of existing microservices instance",
+      "best_practices": "Support health check for microservices\nSupport for Backward Compatibility\nSupport for Roll Back\nSupport readiness probe and Liveliness probe for Microservices\nPlatform support to route traffic to new service once Platform confirms that new service is ready to accept traffic ",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Deployment Patterns",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Does your platform support health check (readiness probes) for microservices before declaring deployments successful?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does yor platform support health check (liveliness probes) for microservices before declaring deployments successful?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does your platform support rolling upgrades?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does your platform support automatic rollback of deployments",
+          "weightage": "M"
+        },
+        {
+          "question": "Does your Platform support to route traffic to new service once Platform confirms that new service is ready to accept traffic ",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Canary Deployments",
+      "description": "Deploy the new version into production alongside the old one.. Controlling traffic routing at high level",
+      "best_practices": "Support health check for microservices\nSupport for Backward Compatibility\nSupport for Roll Back\nSupport readiness probe and Liveliness probe for Microservices\nHigh level traffic routing support",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Deployment Patterns",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Does your platform support health check (readiness probes) for microservices before declaring deployments successful?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does yor platform support health check (liveliness probes) for microservices before declaring deployments successful?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does your platform support canary upgrades?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does your platform support automatic rollback of deployments",
+          "weightage": "H"
+        },
+        {
+          "question": "Does your Platform support to route traffic to new service once Platform confirms that new service is ready to accept traffic ",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "A/B testing Support",
+      "description": "Deploy the new version into production alongside the old one.. More granular attribute/domain/Business based traffic routing",
+      "best_practices": "Support health check for microservices\nSupport for Backward Compatibility\nSupport for Roll Back\nSupport readiness probe and Liveliness probe for Microservices\nGranular traffic routing support",
+      "reference": "",
+      "domain": "Microservices foundation",
+      "section": "Microservices Deployment Patterns",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Does your platform support health check (readiness probes) for microservices before declaring deployments successful?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does yor platform support health check (liveliness probes) for microservices before declaring deployments successful?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does your platform support a/b upgrades?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does your platform support Granular/intelligent traffic routing support",
+          "weightage": "M"
+        },
+        {
+          "question": "Does your Platform support to route traffic to new service once Platform confirms that new service is ready to accept traffic ",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Microservices Reference Architecture",
+      "description": "Use reference architecture and tailor it for client specific requirements",
+      "best_practices": "Leverage Spring Mircoservices reference architecture",
+      "reference": "https://spring.io/microservices",
+      "domain": "Microservices foundation",
+      "section": "Reuse - Code Generators and Reference Implementations",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Validate applicability and usage",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Microservices Code generator",
+      "description": "Time saving when generating Microservices code and associated artifacts to be deployed on cloud.",
+      "best_practices": "A workflow engine to automatically generate, build and deploy identified microservices to Kubernetes Platform (Cloud/On-Prem).\n\nFeatures/Functions\nMicroservices development time reduction conservatively by up to 30%\nMicroservices Development project jump start within hours\nDevelopers to focus on business logic instead of spending time on creating project framework, CI/CD pipeline and deployment configurations\n\nValue Proposition/Benefits\nPossibly reduction of development time by 15%-20%",
+      "reference": "https://www.jhipster.tech/",
+      "domain": "Microservices foundation",
+      "section": "Reuse - Code Generators and Reference Implementations",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Validate applicability and usage",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Microservices Chasis",
+      "description": "A microservices bootstrap framework for rapidly building and deploying complex solutions",
+      "best_practices": "MicroServices Chassis provides necessary technical services (build and runtime) for the developed micro-services. It provides technical capabilities such as: Service Discovery, Proxy/Gateway, Security, Service Configuration Management, Monitoring, DevOps, etc to Microservices. It is a critical element of a successful ecosystem of microservices. We have created this chassis based upon Spring Framework for developers to help improve their productivity in developing and testing microservices.",
+      "reference": "https://microservices.io/patterns/microservice-chassis.html",
+      "domain": "Microservices foundation",
+      "section": "Reuse - Code Generators and Reference Implementations",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Validate applicability and usage",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "Are APIs well documented? ",
+      "description": "Well documented APIs are critical to ensure consistent visibility and conformance to your APIs",
+      "best_practices": "Leverage Swagger to document your APIs and Host them centrally so that all partners have on demand access to them.",
+      "reference": "https://swagger.io/resources/articles/best-practices-in-api-documentation/",
+      "domain": "API Documentation",
+      "section": "API Implementation",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are you leveraging swagger and have hosted it at a common location accessible by everyone?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Are APIs designed considering Service Design principles?",
+      "description": "A service refers to functionality pertaining to a particular capability, exposed as an API",
+      "best_practices": "Loose Coupling - Services and consumers must be loosely coupled from each other.\nEncapsulation - A domain service can access data and functionality it does not own through other service contracts only.\nStability - Service contracts must be stable.\nReusable - Services must be developed to be reusable across multiple contexts and by multiple consumers.\nContract-based - Functionality and data must only be exposed through standardized service contracts.\nConsistency - Services must follow a common set of rules, interaction styles, vocabulary and shared type\nEase Of Use - Services must be easy to use and compose in consumers (and applications).\nExternalizable - Service must be designed so that the functionality it provides is easily externalizable.",
+      "reference": "https://github.com/paypal/api-standards/blob/master/api-style-guide.md",
+      "domain": "API Design",
+      "section": "API Implementation",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are your APIs and Consumers loosely coupled?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are your APIs and Consumers highly cohesive?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are your APIs functionality exposed via well defined service contracts?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are all your APIs following a common set of rules, interaction styles and vocabulary?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are your services reusable across different contexts by different consumers?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Are APIs designed with consistent usage of HTTP Method, Status and Headers? ",
+      "description": "HTTP methods should be used consistently along with consistent usage of Status and HTTP headers",
+      "best_practices": "Http methods - Ensure CRUD mapping with HTTP methods\nData processing - Content type headers must match the data format being processed example JSON which is a light-weight data representation for an object composed of unordered key-value pairs\nStandard Http Headers - HTTP headers is to provide metadata information about the body or the sender of the message in a uniform, standardized, and isolated way. \nCustom Http Headers - Avoid custom headers unless required for special processing\nHttp Status codes - Use consistent HTTP status codes appropriate to the response (Succeeded, Request Issue or Server Issues)",
+      "reference": "",
+      "domain": "API Design",
+      "section": "API Implementation",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are you leveraging apropriate HTTP method to support your entitiy's exposed CRUD operations",
+          "weightage": "M"
+        },
+        {
+          "question": "Are you using appropriate http headers?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are you avoiding custom Http headers unless required for special processing",
+          "weightage": "M"
+        },
+        {
+          "question": "Are your APIs using consistent http status codes as appropriate to your response.",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Is API supporting Hypermedia? ",
+      "description": "Hypermedia As The Engine Of Application State (HATEOAS) is a constraint of the REST application architecture. a client could interact with a service entirely through hypermedia provided dynamically by the service. A hypermedia-driven service provides representation of resource(s) to its clients to navigate the API dynamically by including hypermedia links in the responses",
+      "best_practices": "Hypermedia compliant APIs have a well defined entry point for an API which a client navigates to in order to access all other resources.\nThe client does not need to build the logic of composing URIs to execute different requests or code any kind of business rule by looking into the response details (more in detail is described in the later sections) that may be associated with the URIs and state changes.",
+      "reference": "",
+      "domain": "API Design",
+      "section": "API Implementation",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "If your APIs need to be hypermedia compliant, do you have well defined entry points that allows API clients to traverse through all the other dependent resources?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Are standard API Naming Conventions followed? ",
+      "description": "APIs should have a standard naming convention for URIs, Resources, QueryParameters, Fields etc.",
+      "best_practices": "URI Naming convention and standards should be established and leveraged. \nNames are a part of the API consumer’s domain. \nNames should have meaning to that consumer. \nDo not expose back end models to the end users.This is an anti-pattern.\nDo not add packaging to your name. (e.g.com.example.commerce.resource_name)\nURLs depth are upto 3 levels only. Optional states and attributes are behind the HTTP question mark and not as part of the base URL \nGuidance should be established on resource name, Query parameters, Resource names etc. Types of Resource\nMember Resource\n– A resource that points to a single entity.\n– Are identified by an id. Id can be generated by the provider or\ncreated by the client on a POST.\n– Use singular noun or id\nCollections\n– Made up of more then one member.\n– Can be ordered or unordered.\n– Use plural nouns.\nAlgorithmic\n– Resources can be algorithms\n– Business Process, Façade, etc…\n– Should Follow HTTP Verb semantics like any other resource\nResources in RESTful URLs can be chained together to form a hierarchy of relationships.\n– <Resource1>/<id>/<Resource2>/<id>\n– Always use a collection followed by a member - …/customers/123/orders/456/items/789",
+      "reference": "",
+      "domain": "API Design",
+      "section": "API Implementation",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Is your project/application following a well defined URL naming convention and standard?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are your URI names providing meaning to the API consumer? ",
+          "weightage": "M"
+        },
+        {
+          "question": "Your API URI names should not be exposing backend models to the end user?",
+          "weightage": "H"
+        },
+        {
+          "question": "Your API URI names should not add packaging?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are you limiting the URI depth to maxium 3 levels only?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are your optional parameters part of Query string?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Are APIs designed with a well defined contract?",
+      "description": "There are various options available to define the API's contract interface (API specification or API description). Examples are: OpenAPI (fka Swagger), Google Discovery Document, RAML, API BluePrint etc.",
+      "best_practices": "Use JSON Schema to define API contracts.\nUse JSON data types.",
+      "reference": "",
+      "domain": "API Design",
+      "section": "API Implementation",
+      "maturity_driver": "",
+      "questions": [
+        {
+          "question": "Are you leveraging JSON data types within your API contracts?",
+          "weightage": "M"
+        },
+        {
+          "question": "With none enterprise or other constraints, Are you using JSON schema to define your API contracts?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Do APIs implement consistent error handling based on HTTP Specifications?",
+      "description": "As per HTTP specifications, the outcome of a request execution could be an integer and a message. The number is known as the status code and the message as the reason phrase. The reason phrase is a human readable message used to clarify the outcome of the response. The HTTP status codes in the 4xx range indicate client-side errors (validation or logic errors), while those in the 5xx range indicate server-side errors (usually defect or outage)",
+      "best_practices": "Custom Error handling and status codes can be used with appropriate business reasons and well defined contracts.\nError handling should be implemented for Input Validation, Content type validation\nAs a best practice, Http status codes and human readable reason phrase are not sufficient to convey enough information about an error in a machine-readable manner or providing enough information about business scenario exceptions. APIs MUST return a JSON error representation that conforms to the error.json schema defined in the Common Types repository. Refer following link for more details - https://github.com/paypal/api-standards/blob/master/api-style-guide.md#error-handling\n",
+      "reference": "",
+      "domain": "API Design",
+      "section": "API Implementation",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are your APIs using consistent http status codes as appropriate to your response? Success, error?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are your APIs performing appropriate input validation and returning consistent error codes?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are your APIs performing appropriate content validation and returning consistent error codes?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are you not relying on Http status code only to communicate error information back to the caller? Your APIs should wrap an error representation around HTTP status codes and response.",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Is API versioning implemented, Supported, Standardized? ",
+      "description": "API versioning should support Backward Compatibility (where applicable), and support API lifecycle states such as beta, deprecated and retired.",
+      "best_practices": "API specifications MUST follow the versioning scheme where where the v introduces the version, the major is an ordinal starting with 1 for the first LIVE release, and minor is an ordinal starting with 0 for the first minor release of any major release.\nEvery time there is an incremental change to an API, whether or not backward compatible, the API specification MUST be versioned. This allows the change to be labeled, documented, reviewed, discussed, published and communicated.\n\nAPI endpoints MUST only reflect the major version.\nAPI specification versions reflect interface changes and MAY be separate from service implementation versioning schemes.\nA minor API version MUST maintain backward compatibility with all previous minor versions, within the same major version.\nA major API version MAY maintain backward compatibility with a previous major version.\nVersion is maintained in the URL\nVersion is maintained to the left of resource in the URL\nAPI version contains whole number e.g. v1 is fine but v1.1 should not be used\n\nPlace version numbers in the URI top level API for major versions\n– Major version means breaking change. Since the API is a contract with the consumer, a breaking change really results in a new API – hence changing the version in the URI is the best practice.\n– Must be specified.\n– Do not version each Resource.\n– Do not remove old versions without a formal deprecation.\n– If there is a security flash needed (mandatory change), send an immediate communication via all available channels, make the change, but do not increment the major version.\nUse version in Media-Type for minor revisions (when necessary)\n– A particular consumer may be dependent on a behavior that is changed that seems safe. Allowing for a minor version in the media-type gives consumers a way out of these niche cases until they can fix their code.\n– Minor versions may not ever be needed unless a consumer runs into this type of scenario and at that point a service offering can add them via a defect.\n– Does not have to be specified; default to latest minor version.",
+      "reference": "",
+      "domain": "API Design",
+      "section": "API Implementation",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Do you have a versioning strategy for your APIs?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are your APIs backward compatible?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you test backward compatibility when rolling out new versions of APIs",
+          "weightage": "H"
+        },
+        {
+          "question": "Do you have a strategy to ensure that consumers can move to new versions of APIs when new versions are not backward compatible.",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Do APIs handle pagination effectively",
+      "description": "",
+      "best_practices": "API response contains only the fields required by the consumer and not all the attributes\nRequired fields for a resource are specified in a comma-delimited list in request URL\n\"limit\" and \"offset\" are used for pagination\nMetadata is included with each response \nDefault value for \"offset\" is set (0 as a rule of thumb)\nDefault value for \"limit\" is set (10 as a rule of thumb although it depends on data size)\nLeverage compression when browsers are consuming APIs response",
+      "reference": "",
+      "domain": "API Design",
+      "section": "API Implementation",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are you leveraging effective strategies like limits and offset to manage pagination?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Are your APIs secured?",
+      "description": "API Security is critical to ensure unauthorized access to your APIs",
+      "best_practices": "Use JWT or API Keys to provide access to your APIs. \nTokens should be be temporary and should have TTL (Time to Live). \nIf required, consider other approaches such as framework driven security implementation (eg Spring Security). ",
+      "reference": "https://www.owasp.org/index.php/REST_Security_Cheat_Sheet",
+      "domain": "API Security",
+      "section": "API Implementation",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are your APIs secured when being accessed by other components within the same application?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Are access policies for your APIs defined? ",
+      "description": "API should have appropriate security policies for external v/s internal access. ",
+      "best_practices": "Separate access policies and gateways should be defined for API that are to be exposed to different types of channels",
+      "reference": "",
+      "domain": "API Security",
+      "section": "API Implementation",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are your APIs appropriately secured when being accessed by other apps within the enterprise?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are your APIs appropriately secured when being accessed by other apps outside the enterprise?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Are API security best practices implemented?",
+      "description": "API Security best practices ensure that your APIs are secure and designed keeping security in mind.",
+      "best_practices": "These best practices cover the following key topics\nProtocol access\nInput Type Validation\nContent Type Validation\nAccess Controls\nAudit Logging\nSecurity Headers and Managing Sensitive Information\nCORS poilicies",
+      "reference": "",
+      "domain": "API Security",
+      "section": "API Implementation",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are your APIs perfoming input type validation?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are your APIs performing content type validation?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are your APIs or infrasructure performing audit logging for API access?",
+          "weightage": "H"
+        },
+        {
+          "question": "Have you implemented the right CORS headers?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Is API testing automated?",
+      "description": "API testing should be automated. Beyond initial unit testing, there should not be any manual testing that should be done for testing APIs.\n\nWhereever feasibile, API testing should be part of devops Continuous testing Pipeline",
+      "best_practices": "If your spec is written in Swagger/OpenAPI, you can autogen tests using Swagger Test Templates. For API Blueprint there’s Dredd.",
+      "reference": "",
+      "domain": "API Testing",
+      "section": "API Implementation",
+      "maturity_driver": "",
+      "questions": [
+        {
+          "question": "Is your API testing automated?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "is TDD implemented for API Unit and function testing?",
+      "description": "Test Driven development implemented",
+      "best_practices": "Developers use TDD (Test Driven Develoment) and create unit/FVTtests that invoke each REST API. TDD may require additional REST APIs (some may delivered in the product, and some may be for test only).",
+      "reference": "",
+      "domain": "API Testing",
+      "section": "API Implementation",
+      "maturity_driver": "",
+      "questions": [
+        {
+          "question": "Are you using TDD for perfoming Unit and functional testing agaist your APIs",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Regression Automation",
+      "description": "Consider it critical to automate your full regression suite not just few critical APIs.",
+      "best_practices": "Execute Regression testing as part of CI/CD Pipeline.",
+      "reference": "",
+      "domain": "API Testing",
+      "section": "API Implementation",
+      "maturity_driver": "",
+      "questions": [
+        {
+          "question": "Is complete regression suite automated?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Business process automation",
+      "description": "APIs testing should not just be transactional. Care should be taken to ensure that functional testing tests business processes that are composed or orchestrated as APIs.",
+      "best_practices": "",
+      "reference": "",
+      "domain": "API Testing",
+      "section": "API Implementation",
+      "maturity_driver": "",
+      "questions": [
+        {
+          "question": "Are API tested in Isolation or testing orchestrated for a business process? ",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Consumer driven contracts",
+      "description": "Contract Testing is writing tests to ensure that the explicit and implicit contracts of microservices work as advertised",
+      "best_practices": "Pact is an excellent tool to use to do Contract Testing from a consumer’s perspective. Pact allows consumers to create, execute and evaluate tests against a “pact”, the contract, if you will. The provider is represented as a set of mock services. Then, later on in the Software Test Lifecycle that pact is executed against the provider to ensure that the contract is accurately in force.\nPact is one of the more popular tools for Contract Testing with microservices and it’s a good way to start writing consumer code while the provider behavior is underway in parallel.",
+      "reference": "https://docs.pact.io/",
+      "domain": "API Testing",
+      "section": "API Implementation",
+      "maturity_driver": "",
+      "questions": [
+        {
+          "question": "Are consumer driven contracts based testing being implemented?",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "Backward compatibility",
+      "description": "Whenever APIs are changed and versioned, tesing needs to ensure that APIs are backward compatible and tested. (Refer API versioning above for more details)",
+      "best_practices": "APIs that have specifications to support backward compatiility should be tested for backward compatibility.",
+      "reference": "",
+      "domain": "API Testing",
+      "section": "API Implementation",
+      "maturity_driver": "",
+      "questions": [
+        {
+          "question": "Are APIs being tested for backward compatibility?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Do we need to manage API Externalization?",
+      "description": "API exploration\nSelf-service sign up\nInteractive API testing\nApp key provisioning\nAPI usage analytics\nRate limit notification\nMultiple dev communities",
+      "best_practices": "Leverage API Management tools to support API Externalization and Productization capabilities\n\nMultiple tools available in the market including Apigee, Kong, AWS API Gateway, Mulesoft, and others",
+      "reference": "",
+      "domain": "API Management",
+      "section": "API Implementation",
+      "maturity_driver": "",
+      "questions": [
+        {
+          "question": "Applicable and compliant?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Do we need to manage and scale API realization and lifecycle.",
+      "description": "Multi-tenancy\nRate limiting\nRuntime policy enforcement\nAPI deployment\nOAuth security management\nData transformation/redaction\nBackend service discovery\nVersion management\nAnalytics support\nRole-based access control\nEnvironment management\nMonitoring and notification",
+      "best_practices": "Leverage API Management tools to support API Externalization and Productization capabilities\n\nMultiple tools available in the market including Apigee, Kong, AWS API Gateway, Mulesoft, and others",
+      "reference": "",
+      "domain": "API Management",
+      "section": "API Implementation",
+      "maturity_driver": "",
+      "questions": [
+        {
+          "question": "Applicable and compliant?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Code Complexity & Structure",
+      "description": "Code is structured for readability and low complexity, avoiding oversized classes/methods.",
+      "best_practices": "Keep cyclomatic complexity bounded; factor shared logic; remove dead code and commented-out blocks.",
+      "reference": "",
+      "domain": "Code Quality & Maintainability",
+      "section": "Code Quality & Maintainability",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Is cyclomatic complexity kept within reasonable bounds, with no oversized God classes or methods?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is code duplication minimized and shared logic factored into reusable units?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is dead code (unused functions, unreferenced imports, commented-out blocks) kept out of the codebase?",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "Coding Standards & Tooling",
+      "description": "Consistent style and idioms enforced through automated tooling.",
+      "best_practices": "Configure and enforce a linter and auto-formatter in CI; follow language-idiomatic conventions.",
+      "reference": "",
+      "domain": "Code Quality & Maintainability",
+      "section": "Code Quality & Maintainability",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Is a linter configured and enforced (ideally in CI)?",
+          "weightage": "H"
+        },
+        {
+          "question": "Is an auto-formatter configured for consistent code style?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does the code follow language-idiomatic conventions consistently?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Technical Debt Management",
+      "description": "Technical debt is tracked and kept under control rather than accumulating silently.",
+      "best_practices": "Track TODO/FIXME/HACK markers; avoid or migrate deprecated APIs and libraries.",
+      "reference": "",
+      "domain": "Code Quality & Maintainability",
+      "section": "Code Quality & Maintainability",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Are TODO/FIXME/HACK markers tracked and kept to a manageable level?",
+          "weightage": "L"
+        },
+        {
+          "question": "Is deprecated API or library usage avoided or actively being migrated?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Test Coverage",
+      "description": "A meaningful automated test suite covers critical behavior, enforced by a coverage gate.",
+      "best_practices": "Maintain unit + integration tests; measure coverage and gate on a threshold; cover critical paths.",
+      "reference": "",
+      "domain": "Testing & Quality Assurance",
+      "section": "Testing & Quality Assurance",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Is there a meaningful automated test suite spanning unit and integration tests?",
+          "weightage": "H"
+        },
+        {
+          "question": "Is code coverage measured and enforced by a threshold gate?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are critical paths (auth, data mutations, external calls) covered by tests?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Test Quality & Isolation",
+      "description": "Tests are reliable, isolated, and assert meaningful behavior.",
+      "best_practices": "Avoid shared mutable state and order dependence; assert behavior rather than over-mocking.",
+      "reference": "",
+      "domain": "Testing & Quality Assurance",
+      "section": "Testing & Quality Assurance",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are tests isolated and free of shared mutable state or order dependence?",
+          "weightage": "M"
+        },
+        {
+          "question": "Do tests assert meaningful behavior rather than over-mocking implementation details?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Test Types & CI Gate",
+      "description": "Multiple test types run automatically and block merges on failure.",
+      "best_practices": "Include integration/e2e tests beyond unit tests; enforce a CI test gate.",
+      "reference": "",
+      "domain": "Testing & Quality Assurance",
+      "section": "Testing & Quality Assurance",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are end-to-end or integration tests present beyond unit tests?",
+          "weightage": "M"
+        },
+        {
+          "question": "Does CI block merges on test failure?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Schema Design Quality",
+      "description": "Database schema/ORM models are well-structured, consistently named, and appropriately indexed.",
+      "best_practices": "Use consistent naming; define indexes for common queries; apply nullability/constraints intentionally.",
+      "reference": "",
+      "domain": "Data Architecture",
+      "section": "Data Architecture & Management",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are database schemas or ORM models well-structured with consistent naming conventions?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are appropriate indexes defined for common query patterns?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is nullability and constraint discipline applied intentionally rather than by default?",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "Migration Management",
+      "description": "Schema changes are managed by a versioned, source-controlled migration tool.",
+      "best_practices": "Use Flyway/Liquibase/Alembic/Knex/Prisma/EF Migrations; commit migrations; make them reversible.",
+      "reference": "",
+      "domain": "Data Architecture",
+      "section": "Data Architecture & Management",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are schema changes managed by a versioned migration tool (Flyway, Liquibase, Alembic, EF Migrations, etc.)?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are migrations committed to source control and reversible where feasible?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Data Access Patterns",
+      "description": "Data access is consistent, transactional, and uses pooled connections.",
+      "best_practices": "Keep transaction boundaries tight; configure connection pooling; use a consistent repository/ORM approach.",
+      "reference": "",
+      "domain": "Data Architecture",
+      "section": "Data Architecture & Management",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are transaction boundaries correct and tightly scoped?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is connection pooling configured with sensible limits?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is the data-access approach consistent (repository/ORM) rather than raw queries scattered across business logic?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Multi-tenancy & Data Isolation",
+      "description": "Tenant data is isolated with no risk of cross-tenant leakage.",
+      "best_practices": "Enforce tenant scoping (row-level/schema/db-per-tenant); guard queries against missing tenant filters.",
+      "reference": "",
+      "domain": "Data Architecture",
+      "section": "Data Architecture & Management",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "If the system is multi-tenant, is tenant isolation enforced with no cross-tenant data-leakage risk?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Audit Trails & Data Lifecycle",
+      "description": "Data changes are auditable and lifecycle/retention is managed.",
+      "best_practices": "Capture created/updated/by and change history; apply soft-delete consistently; define retention/purge.",
+      "reference": "",
+      "domain": "Data Architecture",
+      "section": "Data Architecture & Management",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are audit fields (created/updated/by) and change history captured where needed?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is a data retention or purge strategy in place rather than unbounded growth?",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "Backup & Disaster Recovery",
+      "description": "Data is protected by backups with defined recovery objectives.",
+      "best_practices": "Automate backups with retention; define RPO/RTO; document and test recovery procedures.",
+      "reference": "",
+      "domain": "Data Architecture",
+      "section": "Data Architecture & Management",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Is there a documented or automated backup strategy with defined retention?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are RPO/RTO targets defined and recovery procedures documented?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Authentication & Credential Security",
+      "description": "Authentication uses a vetted mechanism and credentials are stored safely.",
+      "best_practices": "Use OAuth2/OIDC/JWT/session with proper expiry and rotation; hash passwords with bcrypt/argon2/PBKDF2.",
+      "reference": "https://owasp.org/Top10/",
+      "domain": "Security Posture",
+      "section": "Security Posture",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Is authentication implemented with a vetted mechanism (OAuth2/OIDC/JWT/session) and proper token expiry?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are passwords hashed with a strong algorithm (bcrypt/argon2/PBKDF2) and never stored in plaintext/MD5/SHA1?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Secrets & Configuration Security",
+      "description": "No secrets are committed; they are sourced from a manager and excluded from artifacts.",
+      "best_practices": "Keep secrets out of code/images; use a vault/manager or env injection; exclude secret files via ignore lists.",
+      "reference": "",
+      "domain": "Security Posture",
+      "section": "Security Posture",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Is the codebase free of hardcoded secrets (API keys, passwords, connection strings, tokens)?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are secrets sourced from a manager/vault or injected via environment rather than committed?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do .gitignore/.dockerignore exclude secret and credential files?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "OWASP Top 10 Coverage",
+      "description": "Common web risks (access control, injection, misconfiguration) are mitigated.",
+      "best_practices": "Enforce server-side authorization; parameterize queries; disable debug endpoints and verbose client errors.",
+      "reference": "https://owasp.org/Top10/",
+      "domain": "Security Posture",
+      "section": "Security Posture",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Is access control enforced server-side, with no broken or object-level authorization gaps?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are injection risks mitigated via parameterized queries and safe APIs?",
+          "weightage": "H"
+        },
+        {
+          "question": "Is security misconfiguration avoided (no debug endpoints, default credentials, or verbose errors to clients)?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Security Headers & Transport",
+      "description": "Traffic is protected by security headers, TLS, and restricted CORS.",
+      "best_practices": "Set CSP/HSTS/X-Content-Type-Options; enforce TLS minimum version; restrict CORS origins.",
+      "reference": "",
+      "domain": "Security Posture",
+      "section": "Security Posture",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are HTTP security headers configured (CSP, HSTS, X-Content-Type-Options, etc.)?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is TLS enforced with a sane minimum version and CORS restricted (no blanket wildcard with credentials)?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Input Validation & Injection Prevention",
+      "description": "Inputs are validated and outputs encoded to prevent injection/XSS.",
+      "best_practices": "Validate/sanitize at trust boundaries; encode output; validate file uploads and deserialization.",
+      "reference": "",
+      "domain": "Security Posture",
+      "section": "Security Posture",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Is input validated and sanitized at trust boundaries?",
+          "weightage": "H"
+        },
+        {
+          "question": "Is output encoding applied to prevent XSS where applicable?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "PII & Data Privacy",
+      "description": "Personal data is protected and privacy rights are supported.",
+      "best_practices": "Encrypt PII in transit and at rest; provide consent and right-to-erasure where regulated.",
+      "reference": "",
+      "domain": "Security Posture",
+      "section": "Security Posture",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Is PII encrypted both in transit and at rest?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are privacy mechanisms (consent, right-to-erasure) present where regulated data is handled?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Container & IaC Security",
+      "description": "Containers and infrastructure follow least-privilege, hardened configuration.",
+      "best_practices": "Run containers as non-root with pinned base images; avoid secrets in layers; least-privilege IaC.",
+      "reference": "",
+      "domain": "Security Posture",
+      "section": "Security Posture",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Does the container run as non-root with a pinned base image and no secrets baked into layers?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do infrastructure manifests apply least privilege (no wildcard IAM, no 0.0.0.0/0 exposure, resource limits set)?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Error Handling",
+      "description": "Errors are handled consistently with no silent swallowing and graceful shutdown.",
+      "best_practices": "Avoid empty catch blocks; add global handlers; handle SIGTERM with connection draining.",
+      "reference": "",
+      "domain": "Reliability & Operations",
+      "section": "Reliability & Operations",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Is error handling consistent, with no silent error swallowing (empty catch/except blocks)?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are global error handlers or unhandled-rejection catchers in place?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is graceful shutdown handled (SIGTERM, connection draining, in-flight request completion)?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Observability — Three Pillars",
+      "description": "Logs, metrics, and traces are present and correlated.",
+      "best_practices": "Use structured logging with disciplined levels; export metrics; correlate via trace/correlation IDs.",
+      "reference": "",
+      "domain": "Reliability & Operations",
+      "section": "Reliability & Operations",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Is structured logging used with disciplined levels and no sensitive data leakage?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are metrics instrumented and exported (Prometheus/StatsD/OpenTelemetry/APM)?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are logs, metrics, and traces correlated via trace/correlation IDs end-to-end?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Resilience Patterns",
+      "description": "Outbound calls are protected by timeouts, retries, breakers, and fallbacks.",
+      "best_practices": "Set timeouts on every dependency; add retries with backoff/jitter and circuit breakers; define fallbacks.",
+      "reference": "",
+      "domain": "Reliability & Operations",
+      "section": "Reliability & Operations",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Do outbound calls have timeouts on every dependency (HTTP, DB, cache, queue)?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are retries with backoff/jitter and circuit breakers used for unstable dependencies?",
+          "weightage": "H"
+        },
+        {
+          "question": "Is fallback or degraded-mode behavior defined for external service failures?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Health & Readiness",
+      "description": "Liveness/readiness endpoints report real dependency health.",
+      "best_practices": "Expose liveness and readiness probes; verify critical dependencies in readiness.",
+      "reference": "",
+      "domain": "Reliability & Operations",
+      "section": "Reliability & Operations",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Are liveness and readiness endpoints exposed?",
+          "weightage": "H"
+        },
+        {
+          "question": "Do health checks verify critical downstream dependencies?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Load & Chaos Testing",
+      "description": "Performance and failure modes are validated proactively.",
+      "best_practices": "Add load/stress tests (k6/Locust/JMeter/Gatling); use chaos/fault injection.",
+      "reference": "",
+      "domain": "Reliability & Operations",
+      "section": "Reliability & Operations",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Are load or stress tests present (k6, Locust, JMeter, Gatling)?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is chaos or fault-injection testing used to validate resilience?",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "Feature Flags & Rollout",
+      "description": "Risky changes ship safely behind flags with kill switches.",
+      "best_practices": "Use a feature-flag system for gradual rollout and kill switches.",
+      "reference": "",
+      "domain": "Reliability & Operations",
+      "section": "Reliability & Operations",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Is a feature-flag mechanism used for safe rollout and kill switches?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Performance Hotspots",
+      "description": "Request paths avoid common performance pitfalls.",
+      "best_practices": "Eliminate N+1 queries; paginate unbounded lists; offload CPU-heavy work from request handlers.",
+      "reference": "",
+      "domain": "Performance & Scalability",
+      "section": "Performance & Scalability",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Is the data layer free of N+1 query patterns (batching/DataLoader/joins used)?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are unbounded list operations avoided in critical paths via pagination?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are CPU-intensive operations offloaded out of synchronous request handlers?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Database Performance",
+      "description": "Queries are optimized and large result sets handled efficiently.",
+      "best_practices": "Use indexes and projections; avoid full scans and fat selects; stream/paginate large results.",
+      "reference": "",
+      "domain": "Performance & Scalability",
+      "section": "Performance & Scalability",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are queries optimized with appropriate indexes and projections (no full scans or fat selects)?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are large result sets streamed or paginated rather than loaded wholesale?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Caching Strategy",
+      "description": "Expensive reads are cached with a clear invalidation strategy.",
+      "best_practices": "Cache expensive, frequently-read, rarely-changing data; define TTL/event-driven invalidation.",
+      "reference": "",
+      "domain": "Performance & Scalability",
+      "section": "Performance & Scalability",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Is caching applied to expensive, frequently-read, rarely-changing data?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is there a clear cache invalidation strategy (TTL or event-driven)?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Async & Concurrency",
+      "description": "Long operations are async and pools are sized appropriately.",
+      "best_practices": "Offload long work to queues/workers; size thread/connection pools sensibly.",
+      "reference": "",
+      "domain": "Performance & Scalability",
+      "section": "Performance & Scalability",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are long-running operations handled asynchronously (queues, workers, background jobs)?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are thread and connection pools sized appropriately?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Scalability",
+      "description": "The service scales horizontally without state coupling.",
+      "best_practices": "Keep services stateless; avoid sticky sessions and local filesystem coupling.",
+      "reference": "",
+      "domain": "Performance & Scalability",
+      "section": "Performance & Scalability",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Is the service horizontally scalable (stateless, no sticky sessions or local filesystem coupling)?",
+          "weightage": "H"
+        }
+      ]
+    },
+    {
+      "criteria": "Dependency Health",
+      "description": "Dependencies are current and update automation is in place.",
+      "best_practices": "Keep dependencies reasonably current; avoid unmaintained packages; automate updates.",
+      "reference": "",
+      "domain": "Performance & Scalability",
+      "section": "Performance & Scalability",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Are dependencies reasonably current and free of unmaintained or abandoned packages?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is automated dependency update tooling configured (Dependabot, Renovate)?",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "Git Workflow & Version Control",
+      "description": "Source control follows a clear, protected, well-versioned workflow.",
+      "best_practices": "Use a clear branching strategy; enforce branch protection and reviews; tag releases with changelogs.",
+      "reference": "",
+      "domain": "Developer Experience",
+      "section": "Developer Experience & Delivery",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Is a clear branching strategy followed with consistent branch naming?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are branch protection, required reviews, and status checks enforced?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are releases tagged with changelogs and semantic versioning?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Local Development Setup",
+      "description": "A new engineer can run the app locally quickly from documented steps.",
+      "best_practices": "Provide setup docs (README/CONTRIBUTING/Makefile/devcontainer); local deps via compose; complete .env.example.",
+      "reference": "",
+      "domain": "Developer Experience",
+      "section": "Developer Experience & Delivery",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Is there a documented local setup path (README, CONTRIBUTING, Makefile, or devcontainer)?",
+          "weightage": "H"
+        },
+        {
+          "question": "Is local dependency orchestration provided (docker-compose or equivalent)?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is an .env.example (or equivalent) present and complete?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "CI/CD Pipeline Quality",
+      "description": "The pipeline automates quality stages and supports safe deployment.",
+      "best_practices": "Automate lint/test/security-scan/build; automate deployment with one-command rollback.",
+      "reference": "",
+      "domain": "Developer Experience",
+      "section": "Developer Experience & Delivery",
+      "maturity_driver": "Mandatory",
+      "questions": [
+        {
+          "question": "Does the pipeline automate lint, test, security-scan, and build stages?",
+          "weightage": "H"
+        },
+        {
+          "question": "Is production deployment automated with a one-command rollback path?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Documentation Quality",
+      "description": "Documentation lets engineers understand and operate the system.",
+      "best_practices": "Keep an accurate README (purpose/setup/usage/architecture); add ADRs and runbooks.",
+      "reference": "",
+      "domain": "Developer Experience",
+      "section": "Developer Experience & Delivery",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Does the README cover purpose, setup, usage, and architecture accurately and up to date?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are Architecture Decision Records (ADRs) and operational runbooks present?",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "DORA Metrics",
+      "description": "Delivery performance reflects elite/high DORA benchmarks.",
+      "best_practices": "Optimize deployment frequency, lead time, change-failure rate, and MTTR.",
+      "reference": "https://dora.dev/",
+      "domain": "Developer Experience",
+      "section": "Developer Experience & Delivery",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Is deployment frequency high (frequent, automated production releases)?",
+          "weightage": "M"
+        },
+        {
+          "question": "Is lead time for changes short (a fast commit-to-production path)?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are change-failure rate and MTTR controlled (rollbacks, alerting, runbooks)?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "Developer Tooling",
+      "description": "Local tooling automates quality and common tasks.",
+      "best_practices": "Use pre-commit hooks (lint/format/test) and a task runner/Makefile.",
+      "reference": "",
+      "domain": "Developer Experience",
+      "section": "Developer Experience & Delivery",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Are pre-commit hooks configured (lint/format/test on commit)?",
+          "weightage": "L"
+        },
+        {
+          "question": "Is a task runner or Makefile provided for common operations?",
+          "weightage": "L"
+        }
+      ]
+    },
+    {
+      "criteria": "AI/ML Stack",
+      "description": "AI/ML components and providers are clearly declared and versioned.",
+      "best_practices": "Declare ML libraries, models, and LLM providers with versions; track model artifacts.",
+      "reference": "",
+      "domain": "AI/ML & LLM",
+      "section": "AI/ML & LLM",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "If AI/ML is used, are libraries, models, and providers clearly declared and versioned?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "LLM Integration Quality",
+      "description": "LLM usage is safe, validated, and resilient.",
+      "best_practices": "Version-control/templated prompts; sanitize user input against prompt injection; validate output; retry/fallback.",
+      "reference": "",
+      "domain": "AI/ML & LLM",
+      "section": "AI/ML & LLM",
+      "maturity_driver": "Required",
+      "questions": [
+        {
+          "question": "Are prompts version-controlled and templated rather than hardcoded inline?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are user-supplied inputs sanitized to mitigate prompt injection?",
+          "weightage": "H"
+        },
+        {
+          "question": "Is LLM output validated before use, with retry/backoff and a fallback?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "RAG Pipeline Quality",
+      "description": "Retrieval is correct, consistent, and tenant-isolated.",
+      "best_practices": "Scope retrieval to authorized docs per tenant; keep chunking/embedding consistent; mitigate hallucination.",
+      "reference": "",
+      "domain": "AI/ML & LLM",
+      "section": "AI/ML & LLM",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Is retrieval scoped to authorized documents per user/tenant with no cross-tenant leakage?",
+          "weightage": "H"
+        },
+        {
+          "question": "Are chunking and embedding consistent between indexing and retrieval, with hallucination mitigation?",
+          "weightage": "M"
+        }
+      ]
+    },
+    {
+      "criteria": "MLOps & Evaluation",
+      "description": "Models are tracked, evaluated, and monitored in production.",
+      "best_practices": "Use experiment tracking and a model registry with promotion; add eval/regression tests and drift detection.",
+      "reference": "",
+      "domain": "AI/ML & LLM",
+      "section": "AI/ML & LLM",
+      "maturity_driver": "Nice to have",
+      "questions": [
+        {
+          "question": "Is there experiment tracking and a model registry with promotion stages?",
+          "weightage": "M"
+        },
+        {
+          "question": "Are there regression/evaluation tests for model quality and drift detection in production?",
+          "weightage": "M"
+        }
+      ]
+    }
+  ]
+}

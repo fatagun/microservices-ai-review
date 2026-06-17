@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microservices AI Review — Report</title>
+<!--
+  Presentation-only template. Renders the data injected at {"meta": {"repo": "orders-service (example)", "date": "2026-06-17", "commit": "a1b2c3d", "stack": "Java 21 / Spring Boot 3 / Kubernetes", "overall_score": 3.3}, "coverage": {"total": 340, "auto_evaluated": 268, "not_determinable": 48, "na": 24}, "responses": {"yes": 168, "no": 100, "na": 24, "not_determinable": 48}, "sections": [{"name": "Microservices Implementation", "short": "MS Implementation", "score": 3.8, "status": "⚠"}, {"name": "Microservices Architecture Tenants", "short": "Architecture Tenets", "score": 3.2, "status": "⚠"}, {"name": "Common Microservices app dev Patterns", "short": "App Dev Patterns", "score": 2.6, "status": "⚠"}, {"name": "Microservices Deployment Patterns", "short": "Deployment", "score": 4.2, "status": "✓"}, {"name": "Reuse - Code Generators and Reference Implementations", "short": "Reuse", "score": 3.0, "status": "⚠"}, {"name": "API Implementation", "short": "API", "score": 3.9, "status": "⚠"}, {"name": "Code Quality \u0026 Maintainability", "short": "Code Quality", "score": 3.6, "status": "⚠"}, {"name": "Testing \u0026 Quality Assurance", "short": "Testing", "score": 3.4, "status": "⚠"}, {"name": "Data Architecture \u0026 Management", "short": "Data Arch", "score": 3.0, "status": "⚠"}, {"name": "Security Posture", "short": "Security", "score": 2.4, "status": "⚠"}, {"name": "Reliability \u0026 Operations", "short": "Reliability", "score": 2.8, "status": "⚠"}, {"name": "Performance \u0026 Scalability", "short": "Performance", "score": 3.4, "status": "⚠"}, {"name": "Developer Experience \u0026 Delivery", "short": "Dev Experience", "score": 3.6, "status": "⚠"}, {"name": "AI/ML \u0026 LLM", "short": "AI/ML", "score": null, "status": "n/a"}], "subdomains": [{"name": "12 Factor Principles", "section": "Microservices Implementation", "score": 4.2, "status": "✓", "confidence": "high", "maturity_driver": "Mandatory"}, {"name": "Containerization", "section": "Microservices Implementation", "score": 3.6, "status": "⚠", "confidence": "high", "maturity_driver": "Mandatory"}, {"name": "Fault Tolerance", "section": "Microservices Architecture Tenants", "score": 1.8, "status": "✗", "confidence": "high", "maturity_driver": "Mandatory"}, {"name": "Event-Driven Architecture and Messaging", "section": "Common Microservices app dev Patterns", "score": 2.1, "status": "⚠", "confidence": "medium", "maturity_driver": "Mandatory"}, {"name": "Migration Management", "section": "Data Architecture \u0026 Management", "score": 3.5, "status": "⚠", "confidence": "high", "maturity_driver": "Mandatory"}, {"name": "Secrets \u0026 Configuration Security", "section": "Security Posture", "score": 2.0, "status": "⚠", "confidence": "high", "maturity_driver": "Mandatory"}, {"name": "Resilience Patterns", "section": "Reliability \u0026 Operations", "score": 1.6, "status": "✗", "confidence": "high", "maturity_driver": "Mandatory"}, {"name": "Caching Strategy", "section": "Performance \u0026 Scalability", "score": 4.0, "status": "✓", "confidence": "high", "maturity_driver": "Required"}, {"name": "Documentation Quality", "section": "Developer Experience \u0026 Delivery", "score": 3.6, "status": "⚠", "confidence": "high", "maturity_driver": "Required"}], "findings": [{"domain": "Resilience Patterns", "section": "Reliability \u0026 Operations", "question": "Do outbound calls have timeouts on every dependency, with retries/backoff and circuit breakers?", "response": "No", "weightage": "H", "confidence": "high", "evidence": "No resilience4j dependency in build.gradle; OrderClient.java:34 calls downstream services with RestTemplate and no timeout or fallback.", "recommendation": "Add Resilience4j circuit breakers and connect/read timeouts on all downstream HTTP clients."}, {"domain": "Secrets \u0026 Configuration Security", "section": "Security Posture", "question": "Is the codebase free of hardcoded secrets?", "response": "No", "weightage": "H", "confidence": "high", "evidence": "Database password committed in src/main/resources/application-prod.yml:9.", "recommendation": "Move the secret to a secrets manager, inject at runtime, purge the committed value, and rotate it."}, {"domain": "Event-Driven Architecture and Messaging", "section": "Common Microservices app dev Patterns", "question": "Are you using a message broker or event streaming platform?", "response": "No", "weightage": "H", "confidence": "medium", "evidence": "No messaging dependency in build.gradle; all inter-service calls are synchronous REST (OrderService.java:51).", "recommendation": "Introduce async events for cross-service workflows to decouple services."}], "gaps": [{"domain": "AI/ML \u0026 LLM (all)", "section": "AI/ML \u0026 LLM", "question": "AI/ML stack, LLM integration, RAG, MLOps.", "reason": "No AI/ML libraries or model files found — section not applicable."}]} below.
+  It must never add, infer, or alter findings — all content comes from results.json,
+  the evidence-based artifact produced by /ms-audit.
+-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #f4f5f7; --panel: #ffffff; --ink: #18222e; --muted: #647084; --faint: #9aa4b2;
+    --line: #e7e9ee; --line2: #eef0f4;
+    --green: #16a34a; --amber: #e08a00; --red: #e1453b; --blue: #3b6ef5; --slate: #94a3b8;
+    --grad1: #4f46e5; --grad2: #0ea5e9;
+    --shadow: 0 1px 2px rgba(16,24,40,.04), 0 6px 20px rgba(16,24,40,.06);
+    --radius: 16px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1118; --panel: #161b24; --ink: #e8ecf2; --muted: #9aa6b8; --faint: #6b7689;
+      --line: #232a36; --line2: #1e242f;
+      --green: #34d27b; --amber: #f0a93b; --red: #f06a60; --blue: #6b97ff; --slate: #7c8aa0;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; color: var(--ink); background: var(--bg);
+         font: 15px/1.6 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+         -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 30px 22px 72px; }
+  a { color: var(--blue); }
+
+  /* Header */
+  header.hero { position: relative; overflow: hidden; border-radius: var(--radius); color: #fff;
+                background: linear-gradient(135deg, var(--grad1), var(--grad2)); padding: 30px 32px;
+                display: flex; justify-content: space-between; align-items: center; gap: 28px; flex-wrap: wrap; box-shadow: var(--shadow); }
+  header.hero::after { content: ""; position: absolute; inset: 0; background:
+      radial-gradient(600px 200px at 90% -20%, rgba(255,255,255,.25), transparent 60%); pointer-events: none; }
+  header.hero h1 { margin: 0 0 8px; font-size: 23px; letter-spacing: -.01em; display: flex; align-items: center; gap: 10px; }
+  header.hero .sub { color: rgba(255,255,255,.86); font-size: 13.5px; display: flex; flex-wrap: wrap; gap: 8px 16px; }
+  header.hero .sub span { white-space: nowrap; }
+  .gauge-wrap { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22); border-radius: 14px;
+                padding: 12px 14px 8px; width: 188px; }
+  .gauge-wrap .canvas-holder { height: 96px; position: relative; }
+  .gauge-wrap .cap { text-align: center; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.85); margin-top: 2px; }
+
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted);
+       margin: 40px 0 16px; display: flex; align-items: center; gap: 9px; }
+  h2 .ico { font-size: 15px; }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); }
+  .card .k { font-size: 30px; font-weight: 700; letter-spacing: -.02em; }
+  .card .v { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-top: 3px; }
+  .card.accent-green .k { color: var(--green); } .card.accent-amber .k { color: var(--amber); }
+  .card.accent-slate .k { color: var(--slate); }
+
+  /* Charts */
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); }
+  .panel h3 { margin: 0 0 14px; font-size: 14px; font-weight: 600; }
+  .canvas-holder { position: relative; height: 290px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line);
+          border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line2); font-size: 14.5px; vertical-align: middle; }
+  th { background: color-mix(in srgb, var(--panel) 92%, var(--muted) 8%); font-size: 12px; text-transform: uppercase;
+       letter-spacing: .05em; color: var(--muted); font-weight: 600; }
+  #section-table td { font-size: 15.5px; }
+  #section-table td:first-child { font-weight: 600; }
+  .panel h3 { font-size: 15px; }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--line2); }
+  .bar { height: 8px; border-radius: 6px; background: var(--line); position: relative; min-width: 80px; }
+  .bar > span { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 6px; }
+  .pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; }
+  .pill.green { background: color-mix(in srgb, var(--green) 16%, transparent); color: var(--green); }
+  .pill.amber { background: color-mix(in srgb, var(--amber) 18%, transparent); color: var(--amber); }
+  .pill.red   { background: color-mix(in srgb, var(--red) 16%, transparent); color: var(--red); }
+  .pill.slate { background: color-mix(in srgb, var(--slate) 20%, transparent); color: var(--slate); }
+  .tag { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+  /* Findings */
+  details.finding { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--red);
+                    border-radius: 12px; margin-bottom: 11px; box-shadow: var(--shadow); }
+  details.finding.yes { border-left-color: var(--amber); }
+  details.finding summary { cursor: pointer; padding: 14px 18px; font-weight: 600; list-style: none;
+                            display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
+  details.finding summary::-webkit-details-marker { display: none; }
+  details.finding summary::before { content: "▸"; color: var(--faint); margin-right: 4px; transition: transform .15s; display: inline-block; }
+  details.finding[open] summary::before { transform: rotate(90deg); }
+  details.finding .body { padding: 2px 18px 16px 30px; font-size: 14px; }
+  details.finding .row { margin: 10px 0; }
+  details.finding .lab { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); display: block; margin-bottom: 4px; }
+  .evidence { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; line-height: 1.55;
+              background: var(--line2); border: 1px solid var(--line); padding: 9px 12px; border-radius: 9px; display: block; white-space: pre-wrap; }
+  .meta-tags { display: flex; gap: 7px; flex-shrink: 0; }
+
+  /* Gaps */
+  .gaplist { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+  .gap { padding: 11px 16px; border-bottom: 1px solid var(--line2); font-size: 14px; }
+  .gap:last-child { border-bottom: none; }
+  .gap .q { color: var(--ink); } .gap .why { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .note { background: color-mix(in srgb, var(--blue) 8%, transparent); border: 1px solid color-mix(in srgb, var(--blue) 22%, transparent);
+          border-radius: 12px; padding: 13px 16px; color: var(--muted); font-size: 13px; margin-bottom: 14px; }
+
+  footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--faint); font-size: 12.5px; text-align: center; }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 760px) {
+    .cards { grid-template-columns: 1fr 1fr; } .charts { grid-template-columns: 1fr; }
+    header.hero { flex-direction: column; align-items: flex-start; } .gauge-wrap { width: 100%; }
+  }
+  @media print { body { background: #fff; } .panel, .card, table, details.finding { break-inside: avoid; box-shadow: none; } header.hero::after { display: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div>
+      <h1><span>🔍</span><span id="h-repo">Microservices AI Review</span></h1>
+      <div class="sub" id="h-meta"></div>
+    </div>
+    <div class="gauge-wrap">
+      <div class="canvas-holder"><canvas id="gaugeChart"></canvas></div>
+      <div class="cap">Overall Maturity</div>
+    </div>
+  </header>
+
+  <h2><span class="ico">📊</span> Coverage</h2>
+  <div class="cards" id="coverage-cards"></div>
+
+  <h2><span class="ico">📈</span> Visual Summary</h2>
+  <div class="panel"><h3>Maturity by Section</h3><div class="canvas-holder" id="radarHolder" style="height:480px"><canvas id="radarChart"></canvas></div></div>
+  <div class="panel" style="margin-top:16px"><h3>Section Scores</h3><div class="canvas-holder" id="barHolder" style="height:560px"><canvas id="barChart"></canvas></div></div>
+  <div class="panel" style="margin-top:16px"><h3>Response Distribution</h3><div class="canvas-holder" style="height:300px"><canvas id="doughnutChart"></canvas></div></div>
+
+  <h2><span class="ico">🗂️</span> Section Scores</h2>
+  <table id="section-table"><thead><tr><th>Section</th><th>Score</th><th style="width:36%">Maturity</th><th>Status</th></tr></thead><tbody></tbody></table>
+
+  <h2><span class="ico">🧩</span> Sub-domain Scores</h2>
+  <table id="subdomain-table"><thead><tr><th>Sub-domain</th><th>Section</th><th>Driver</th><th>Score</th><th>Status</th><th>Confidence</th></tr></thead><tbody></tbody></table>
+
+  <h2><span class="ico">🔎</span> Detailed Findings</h2>
+  <div id="findings"></div>
+
+  <h2><span class="ico">❓</span> Not Determinable from Code</h2>
+  <div class="note">These questions can't be proven from the repository (team competency, org process, or live infrastructure). They're reported as gaps and excluded from the score — never guessed, never solicited.</div>
+  <div class="gaplist" id="gaps"></div>
+
+  <footer>Generated by <strong>/ms-audit</strong> · every Yes/No is backed by cited evidence from the target repository.</footer>
+</div>
+
+<script id="audit-data" type="application/json">{"meta": {"repo": "orders-service (example)", "date": "2026-06-17", "commit": "a1b2c3d", "stack": "Java 21 / Spring Boot 3 / Kubernetes", "overall_score": 3.3}, "coverage": {"total": 340, "auto_evaluated": 268, "not_determinable": 48, "na": 24}, "responses": {"yes": 168, "no": 100, "na": 24, "not_determinable": 48}, "sections": [{"name": "Microservices Implementation", "short": "MS Implementation", "score": 3.8, "status": "⚠"}, {"name": "Microservices Architecture Tenants", "short": "Architecture Tenets", "score": 3.2, "status": "⚠"}, {"name": "Common Microservices app dev Patterns", "short": "App Dev Patterns", "score": 2.6, "status": "⚠"}, {"name": "Microservices Deployment Patterns", "short": "Deployment", "score": 4.2, "status": "✓"}, {"name": "Reuse - Code Generators and Reference Implementations", "short": "Reuse", "score": 3.0, "status": "⚠"}, {"name": "API Implementation", "short": "API", "score": 3.9, "status": "⚠"}, {"name": "Code Quality \u0026 Maintainability", "short": "Code Quality", "score": 3.6, "status": "⚠"}, {"name": "Testing \u0026 Quality Assurance", "short": "Testing", "score": 3.4, "status": "⚠"}, {"name": "Data Architecture \u0026 Management", "short": "Data Arch", "score": 3.0, "status": "⚠"}, {"name": "Security Posture", "short": "Security", "score": 2.4, "status": "⚠"}, {"name": "Reliability \u0026 Operations", "short": "Reliability", "score": 2.8, "status": "⚠"}, {"name": "Performance \u0026 Scalability", "short": "Performance", "score": 3.4, "status": "⚠"}, {"name": "Developer Experience \u0026 Delivery", "short": "Dev Experience", "score": 3.6, "status": "⚠"}, {"name": "AI/ML \u0026 LLM", "short": "AI/ML", "score": null, "status": "n/a"}], "subdomains": [{"name": "12 Factor Principles", "section": "Microservices Implementation", "score": 4.2, "status": "✓", "confidence": "high", "maturity_driver": "Mandatory"}, {"name": "Containerization", "section": "Microservices Implementation", "score": 3.6, "status": "⚠", "confidence": "high", "maturity_driver": "Mandatory"}, {"name": "Fault Tolerance", "section": "Microservices Architecture Tenants", "score": 1.8, "status": "✗", "confidence": "high", "maturity_driver": "Mandatory"}, {"name": "Event-Driven Architecture and Messaging", "section": "Common Microservices app dev Patterns", "score": 2.1, "status": "⚠", "confidence": "medium", "maturity_driver": "Mandatory"}, {"name": "Migration Management", "section": "Data Architecture \u0026 Management", "score": 3.5, "status": "⚠", "confidence": "high", "maturity_driver": "Mandatory"}, {"name": "Secrets \u0026 Configuration Security", "section": "Security Posture", "score": 2.0, "status": "⚠", "confidence": "high", "maturity_driver": "Mandatory"}, {"name": "Resilience Patterns", "section": "Reliability \u0026 Operations", "score": 1.6, "status": "✗", "confidence": "high", "maturity_driver": "Mandatory"}, {"name": "Caching Strategy", "section": "Performance \u0026 Scalability", "score": 4.0, "status": "✓", "confidence": "high", "maturity_driver": "Required"}, {"name": "Documentation Quality", "section": "Developer Experience \u0026 Delivery", "score": 3.6, "status": "⚠", "confidence": "high", "maturity_driver": "Required"}], "findings": [{"domain": "Resilience Patterns", "section": "Reliability \u0026 Operations", "question": "Do outbound calls have timeouts on every dependency, with retries/backoff and circuit breakers?", "response": "No", "weightage": "H", "confidence": "high", "evidence": "No resilience4j dependency in build.gradle; OrderClient.java:34 calls downstream services with RestTemplate and no timeout or fallback.", "recommendation": "Add Resilience4j circuit breakers and connect/read timeouts on all downstream HTTP clients."}, {"domain": "Secrets \u0026 Configuration Security", "section": "Security Posture", "question": "Is the codebase free of hardcoded secrets?", "response": "No", "weightage": "H", "confidence": "high", "evidence": "Database password committed in src/main/resources/application-prod.yml:9.", "recommendation": "Move the secret to a secrets manager, inject at runtime, purge the committed value, and rotate it."}, {"domain": "Event-Driven Architecture and Messaging", "section": "Common Microservices app dev Patterns", "question": "Are you using a message broker or event streaming platform?", "response": "No", "weightage": "H", "confidence": "medium", "evidence": "No messaging dependency in build.gradle; all inter-service calls are synchronous REST (OrderService.java:51).", "recommendation": "Introduce async events for cross-service workflows to decouple services."}], "gaps": [{"domain": "AI/ML \u0026 LLM (all)", "section": "AI/ML \u0026 LLM", "question": "AI/ML stack, LLM integration, RAG, MLOps.", "reason": "No AI/ML libraries or model files found — section not applicable."}]}</script>
+<script>
+(function () {
+  var DATA;
+  try { DATA = JSON.parse(document.getElementById('audit-data').textContent); }
+  catch (e) { document.querySelector('.wrap').innerHTML = '<p style="color:#e1453b">No report data injected. Run <code>report/render.py</code> with a results.json.</p>'; return; }
+
+  var css = getComputedStyle(document.documentElement);
+  var GREEN = css.getPropertyValue('--green').trim() || '#16a34a';
+  var AMBER = css.getPropertyValue('--amber').trim() || '#e08a00';
+  var RED = css.getPropertyValue('--red').trim() || '#e1453b';
+  var BLUE = css.getPropertyValue('--blue').trim() || '#3b6ef5';
+  var SLATE = css.getPropertyValue('--slate').trim() || '#94a3b8';
+  var LINE = css.getPropertyValue('--line').trim() || '#e7e9ee';
+  var INK = css.getPropertyValue('--ink').trim() || '#18222e';
+  var MUTED = css.getPropertyValue('--muted').trim() || '#647084';
+
+  function colorFor(s) { if (s == null) return SLATE; return s >= 4 ? GREEN : s >= 2 ? AMBER : RED; }
+  function pillFor(st) { return st === '✓' ? 'green' : st === '⚠' ? 'amber' : st === '✗' ? 'red' : 'slate'; }
+  function esc(s) { var d = document.createElement('div'); d.textContent = (s == null ? '' : String(s)); return d.innerHTML; }
+  function f1(n) { return n == null ? '—' : Number(n).toFixed(1); }
+
+  // Header
+  document.getElementById('h-repo').textContent = (DATA.meta.repo || 'Microservices AI Review');
+  var m = DATA.meta, parts = [];
+  if (m.date) parts.push('<span>📅 ' + esc(m.date) + '</span>');
+  if (m.commit) parts.push('<span>⎇ ' + esc(m.commit) + '</span>');
+  if (m.stack) parts.push('<span>🧰 ' + esc(m.stack) + '</span>');
+  document.getElementById('h-meta').innerHTML = parts.join('');
+
+  // Coverage cards
+  var c = DATA.coverage;
+  var cards = [
+    ['', c.total, 'Total questions'],
+    ['accent-green', c.auto_evaluated, 'Auto-evaluated'],
+    ['accent-amber', c.not_determinable, 'Not determinable'],
+    ['accent-slate', c.na, 'Not applicable']
+  ];
+  document.getElementById('coverage-cards').innerHTML = cards.map(function (x) {
+    return '<div class="card ' + x[0] + '"><div class="k">' + esc(x[1]) + '</div><div class="v">' + esc(x[2]) + '</div></div>';
+  }).join('');
+
+  // Section table
+  document.querySelector('#section-table tbody').innerHTML = DATA.sections.map(function (s) {
+    var pct = s.score == null ? 0 : (s.score / 5 * 100);
+    return '<tr><td>' + esc(s.name) + '</td><td><strong>' + f1(s.score) + '</strong></td>' +
+      '<td><div class="bar"><span style="width:' + pct + '%;background:' + colorFor(s.score) + '"></span></div></td>' +
+      '<td><span class="pill ' + pillFor(s.status) + '">' + esc(s.status) + '</span></td></tr>';
+  }).join('');
+
+  // Sub-domain table
+  document.querySelector('#subdomain-table tbody').innerHTML = DATA.subdomains.map(function (s) {
+    return '<tr><td>' + esc(s.name) + '</td><td class="tag">' + esc(s.section) + '</td><td class="tag">' + esc(s.maturity_driver || '') +
+      '</td><td><strong>' + f1(s.score) + '</strong></td><td><span class="pill ' + pillFor(s.status) + '">' + esc(s.status) +
+      '</span></td><td class="tag">' + esc(s.confidence || '') + '</td></tr>';
+  }).join('');
+
+  // Findings
+  document.getElementById('findings').innerHTML = DATA.findings.length ? DATA.findings.map(function (f) {
+    var w = { H: 'High', M: 'Medium', L: 'Low' }[f.weightage] || f.weightage || '';
+    var rPill = f.response === 'Yes' ? 'amber' : 'red';
+    return '<details class="finding ' + (f.response === 'Yes' ? 'yes' : '') + '"><summary><span>' + esc(f.domain) + ' — ' + esc(f.question) +
+      '</span><span class="meta-tags"><span class="pill ' + rPill + '">' + esc(f.response) + '</span><span class="pill slate">' + esc(w) +
+      (f.confidence ? ' · ' + esc(f.confidence) : '') + '</span></span></summary>' +
+      '<div class="body"><div class="row"><span class="lab">Evidence</span><span class="evidence">' + esc(f.evidence) + '</span></div>' +
+      (f.recommendation ? '<div class="row"><span class="lab">Recommendation</span>' + esc(f.recommendation) + '</div>' : '') +
+      '</div></details>';
+  }).join('') : '<div class="panel" style="color:var(--muted)">No negative or low-confidence findings.</div>';
+
+  // Gaps
+  document.getElementById('gaps').innerHTML = DATA.gaps.length ? DATA.gaps.map(function (g) {
+    return '<div class="gap"><div class="q">' + esc(g.domain) + ' — ' + esc(g.question) + '</div><div class="why">' + esc(g.reason) + '</div></div>';
+  }).join('') : '<div class="gap"><div class="q">None — every question was determinable from the repository.</div></div>';
+
+  // ---- Charts (tables already render even if the CDN is blocked) ----
+  if (typeof Chart === 'undefined') return;
+  Chart.defaults.color = MUTED;
+  Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
+  Chart.defaults.borderColor = LINE;
+
+  var sc = m.overall_score != null ? Number(m.overall_score) : 0;
+  new Chart(document.getElementById('gaugeChart'), {
+    type: 'doughnut',
+    data: { datasets: [{ data: [sc, 5 - sc], backgroundColor: ['#ffffff', 'rgba(255,255,255,.28)'], borderWidth: 0 }] },
+    options: { rotation: -90, circumference: 180, cutout: '74%', maintainAspectRatio: false, responsive: true,
+      plugins: { legend: { display: false }, tooltip: { enabled: false } } },
+    plugins: [{ id: 'g', afterDraw: function (ch) {
+      var a = ch.getDatasetMeta(0).data[0], x = a.x, y = a.y, ctx = ch.ctx; ctx.save(); ctx.textAlign = 'center';
+      ctx.fillStyle = '#fff'; ctx.font = '700 30px ' + Chart.defaults.font.family; ctx.fillText(sc.toFixed(1), x, y - 2);
+      ctx.fillStyle = 'rgba(255,255,255,.8)'; ctx.font = '11px ' + Chart.defaults.font.family; ctx.fillText('of 5.0', x, y + 16); ctx.restore();
+    } }]
+  });
+
+  var r = DATA.responses;
+  new Chart(document.getElementById('doughnutChart'), {
+    type: 'doughnut',
+    data: { labels: ['Yes', 'No', 'NA', 'Not determinable'],
+      datasets: [{ data: [r.yes, r.no, r.na, r.not_determinable], backgroundColor: [GREEN, RED, SLATE, LINE],
+        borderWidth: 2, borderColor: css.getPropertyValue('--panel').trim() }] },
+    options: { maintainAspectRatio: false, responsive: true, cutout: '58%', plugins: { legend: { position: 'bottom', labels: { padding: 14, usePointStyle: true } } } }
+  });
+
+  // Short labels for chart axes; multi-word labels wrap to 2 lines so they stay readable.
+  function shortLabel(s) { return s.short || s.name.replace(/ - .*/, '').replace(/^(Microservices|Common Microservices app dev) /, ''); }
+  function wrap(str) { var w = str.split(' '); if (w.length < 2) return str; var mid = Math.ceil(w.length / 2); return [w.slice(0, mid).join(' '), w.slice(mid).join(' ')]; }
+  var labels = DATA.sections.map(function (s) { return wrap(shortLabel(s)); });
+  var vals = DATA.sections.map(function (s) { return s.score == null ? 0 : s.score; });
+  var barColors = DATA.sections.map(function (s) { return colorFor(s.score); });
+
+  new Chart(document.getElementById('radarChart'), {
+    type: 'radar',
+    data: { labels: labels, datasets: [{ label: 'Score', data: vals,
+      backgroundColor: 'rgba(59,110,245,.16)', borderColor: BLUE, borderWidth: 2.5, pointBackgroundColor: BLUE, pointRadius: 4, pointHoverRadius: 6 }] },
+    options: { maintainAspectRatio: false, responsive: true, layout: { padding: 10 },
+      scales: { r: { min: 0, max: 5, ticks: { stepSize: 1, backdropColor: 'transparent', font: { size: 12 }, color: MUTED },
+        grid: { color: LINE }, angleLines: { color: LINE }, pointLabels: { font: { size: 12.5, weight: '600' }, color: INK } } },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { title: function (i) { return DATA.sections[i[0].dataIndex].name; },
+        label: function (c) { var s = DATA.sections[c.dataIndex]; return '  ' + (s.score == null ? 'n/a' : s.score.toFixed(1) + ' / 5'); } } } } }
+  });
+
+  // Bar height scales with section count so every label is legible.
+  document.getElementById('barHolder').style.height = Math.max(320, DATA.sections.length * 34 + 40) + 'px';
+  var barValuePlugin = { id: 'barValues', afterDatasetsDraw: function (ch) {
+    var ctx = ch.ctx, meta = ch.getDatasetMeta(0); ctx.save();
+    ctx.font = '700 13px ' + Chart.defaults.font.family; ctx.textBaseline = 'middle';
+    meta.data.forEach(function (bar, i) { var s = DATA.sections[i]; var txt = s.score == null ? 'n/a' : s.score.toFixed(1);
+      ctx.fillStyle = s.score == null ? MUTED : colorFor(s.score); ctx.textAlign = 'left'; ctx.fillText(txt, bar.x + 8, bar.y); });
+    ctx.restore();
+  } };
+  new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: { labels: labels, datasets: [{ data: vals, borderRadius: 6, barThickness: 18, backgroundColor: barColors }] },
+    options: { indexAxis: 'y', maintainAspectRatio: false, responsive: true, layout: { padding: { right: 30 } },
+      scales: { x: { min: 0, max: 5, ticks: { stepSize: 1, font: { size: 12 }, color: MUTED }, grid: { color: LINE } },
+        y: { grid: { display: false }, ticks: { font: { size: 12.5, weight: '600' }, color: INK, autoSkip: false } } },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { title: function (i) { return DATA.sections[i[0].dataIndex].name; },
+        label: function (c) { var s = DATA.sections[c.dataIndex]; return s.score == null ? 'n/a' : s.score.toFixed(1) + ' / 5  ' + s.status; } } } } },
+    plugins: [barValuePlugin]
+  });
+})();
+</script>
+</body>
+</html>

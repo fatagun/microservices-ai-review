@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "repo": "orders-service (example)",
+    "date": "2026-06-17",
+    "commit": "a1b2c3d",
+    "stack": "Java 21 / Spring Boot 3 / Kubernetes",
+    "overall_score": 3.3
+  },
+  "coverage": {
+    "total": 340,
+    "auto_evaluated": 268,
+    "not_determinable": 48,
+    "na": 24
+  },
+  "responses": {
+    "yes": 168,
+    "no": 100,
+    "na": 24,
+    "not_determinable": 48
+  },
+  "sections": [
+    {
+      "name": "Microservices Implementation",
+      "short": "MS Implementation",
+      "score": 3.8,
+      "status": "⚠"
+    },
+    {
+      "name": "Microservices Architecture Tenants",
+      "short": "Architecture Tenets",
+      "score": 3.2,
+      "status": "⚠"
+    },
+    {
+      "name": "Common Microservices app dev Patterns",
+      "short": "App Dev Patterns",
+      "score": 2.6,
+      "status": "⚠"
+    },
+    {
+      "name": "Microservices Deployment Patterns",
+      "short": "Deployment",
+      "score": 4.2,
+      "status": "✓"
+    },
+    {
+      "name": "Reuse - Code Generators and Reference Implementations",
+      "short": "Reuse",
+      "score": 3.0,
+      "status": "⚠"
+    },
+    {
+      "name": "API Implementation",
+      "short": "API",
+      "score": 3.9,
+      "status": "⚠"
+    },
+    {
+      "name": "Code Quality & Maintainability",
+      "short": "Code Quality",
+      "score": 3.6,
+      "status": "⚠"
+    },
+    {
+      "name": "Testing & Quality Assurance",
+      "short": "Testing",
+      "score": 3.4,
+      "status": "⚠"
+    },
+    {
+      "name": "Data Architecture & Management",
+      "short": "Data Arch",
+      "score": 3.0,
+      "status": "⚠"
+    },
+    {
+      "name": "Security Posture",
+      "short": "Security",
+      "score": 2.4,
+      "status": "⚠"
+    },
+    {
+      "name": "Reliability & Operations",
+      "short": "Reliability",
+      "score": 2.8,
+      "status": "⚠"
+    },
+    {
+      "name": "Performance & Scalability",
+      "short": "Performance",
+      "score": 3.4,
+      "status": "⚠"
+    },
+    {
+      "name": "Developer Experience & Delivery",
+      "short": "Dev Experience",
+      "score": 3.6,
+      "status": "⚠"
+    },
+    {
+      "name": "AI/ML & LLM",
+      "short": "AI/ML",
+      "score": null,
+      "status": "n/a"
+    }
+  ],
+  "subdomains": [
+    {
+      "name": "12 Factor Principles",
+      "section": "Microservices Implementation",
+      "score": 4.2,
+      "status": "✓",
+      "confidence": "high",
+      "maturity_driver": "Mandatory"
+    },
+    {
+      "name": "Containerization",
+      "section": "Microservices Implementation",
+      "score": 3.6,
+      "status": "⚠",
+      "confidence": "high",
+      "maturity_driver": "Mandatory"
+    },
+    {
+      "name": "Fault Tolerance",
+      "section": "Microservices Architecture Tenants",
+      "score": 1.8,
+      "status": "✗",
+      "confidence": "high",
+      "maturity_driver": "Mandatory"
+    },
+    {
+      "name": "Event-Driven Architecture and Messaging",
+      "section": "Common Microservices app dev Patterns",
+      "score": 2.1,
+      "status": "⚠",
+      "confidence": "medium",
+      "maturity_driver": "Mandatory"
+    },
+    {
+      "name": "Migration Management",
+      "section": "Data Architecture & Management",
+      "score": 3.5,
+      "status": "⚠",
+      "confidence": "high",
+      "maturity_driver": "Mandatory"
+    },
+    {
+      "name": "Secrets & Configuration Security",
+      "section": "Security Posture",
+      "score": 2.0,
+      "status": "⚠",
+      "confidence": "high",
+      "maturity_driver": "Mandatory"
+    },
+    {
+      "name": "Resilience Patterns",
+      "section": "Reliability & Operations",
+      "score": 1.6,
+      "status": "✗",
+      "confidence": "high",
+      "maturity_driver": "Mandatory"
+    },
+    {
+      "name": "Caching Strategy",
+      "section": "Performance & Scalability",
+      "score": 4.0,
+      "status": "✓",
+      "confidence": "high",
+      "maturity_driver": "Required"
+    },
+    {
+      "name": "Documentation Quality",
+      "section": "Developer Experience & Delivery",
+      "score": 3.6,
+      "status": "⚠",
+      "confidence": "high",
+      "maturity_driver": "Required"
+    }
+  ],
+  "findings": [
+    {
+      "domain": "Resilience Patterns",
+      "section": "Reliability & Operations",
+      "question": "Do outbound calls have timeouts on every dependency, with retries/backoff and circuit breakers?",
+      "response": "No",
+      "weightage": "H",
+      "confidence": "high",
+      "evidence": "No resilience4j dependency in build.gradle; OrderClient.java:34 calls downstream services with RestTemplate and no timeout or fallback.",
+      "recommendation": "Add Resilience4j circuit breakers and connect/read timeouts on all downstream HTTP clients."
+    },
+    {
+      "domain": "Secrets & Configuration Security",
+      "section": "Security Posture",
+      "question": "Is the codebase free of hardcoded secrets?",
+      "response": "No",
+      "weightage": "H",
+      "confidence": "high",
+      "evidence": "Database password committed in src/main/resources/application-prod.yml:9.",
+      "recommendation": "Move the secret to a secrets manager, inject at runtime, purge the committed value, and rotate it."
+    },
+    {
+      "domain": "Event-Driven Architecture and Messaging",
+      "section": "Common Microservices app dev Patterns",
+      "question": "Are you using a message broker or event streaming platform?",
+      "response": "No",
+      "weightage": "H",
+      "confidence": "medium",
+      "evidence": "No messaging dependency in build.gradle; all inter-service calls are synchronous REST (OrderService.java:51).",
+      "recommendation": "Introduce async events for cross-service workflows to decouple services."
+    }
+  ],
+  "gaps": [
+    {
+      "domain": "AI/ML & LLM (all)",
+      "section": "AI/ML & LLM",
+      "question": "AI/ML stack, LLM integration, RAG, MLOps.",
+      "reason": "No AI/ML libraries or model files found — section not applicable."
+    }
+  ]
+}

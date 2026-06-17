@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Microservices AI Review — Report Data",
+  "description": "The evidence-based result data emitted by /ms-audit. This is the ONLY artifact the model produces; report/render.py injects it into report/template.html to generate report.html. The template is presentation-only and must not add, infer, or alter any finding.",
+  "type": "object",
+  "required": ["meta", "coverage", "responses", "sections", "subdomains", "findings", "gaps"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["repo", "date", "overall_score"],
+      "properties": {
+        "repo": { "type": "string", "description": "Target repository name" },
+        "date": { "type": "string", "description": "Assessment date (YYYY-MM-DD)" },
+        "commit": { "type": "string", "description": "Short SHA of the assessed commit" },
+        "stack": { "type": "string", "description": "Detected stack, e.g. 'Java 17 / Spring Boot 3 / Kubernetes'" },
+        "overall_score": { "type": "number", "minimum": 0, "maximum": 5, "description": "Overall maturity score over auto-evaluated questions only" }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "required": ["total", "auto_evaluated", "not_determinable", "na"],
+      "properties": {
+        "total": { "type": "integer", "description": "Total questions in the checklist (261)" },
+        "auto_evaluated": { "type": "integer", "description": "Questions answered Yes/No from evidence" },
+        "not_determinable": { "type": "integer", "description": "Questions not provable from code (reported as gaps, excluded from score)" },
+        "na": { "type": "integer", "description": "Questions not applicable to this repo" }
+      }
+    },
+    "responses": {
+      "type": "object",
+      "description": "Response distribution for the doughnut chart",
+      "required": ["yes", "no", "na", "not_determinable"],
+      "properties": {
+        "yes": { "type": "integer" },
+        "no": { "type": "integer" },
+        "na": { "type": "integer" },
+        "not_determinable": { "type": "integer" }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "description": "Per-section scores — drives the radar and bar charts",
+      "items": {
+        "type": "object",
+        "required": ["name", "score", "status"],
+        "properties": {
+          "name": { "type": "string" },
+          "short": { "type": "string", "description": "Optional short label for chart axes (falls back to name)" },
+          "score": { "type": ["number", "null"], "minimum": 0, "maximum": 5 },
+          "status": { "type": "string", "enum": ["✓", "⚠", "✗", "n/a"], "description": "✓ Strong 4–5, ⚠ Needs work 2–4, ✗ Critical <2, n/a no scored questions" }
+        }
+      }
+    },
+    "subdomains": {
+      "type": "array",
+      "description": "Per-sub-domain scores — drives the detailed score table",
+      "items": {
+        "type": "object",
+        "required": ["name", "section", "score", "status"],
+        "properties": {
+          "name": { "type": "string" },
+          "section": { "type": "string" },
+          "score": { "type": ["number", "null"], "description": "0–5, or null when all questions were NA / not-determinable" },
+          "status": { "type": "string", "enum": ["✓", "⚠", "✗", "n/a"] },
+          "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+          "maturity_driver": { "type": "string" }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "description": "Every No (and any low-confidence Yes/No). Each MUST carry real, cited evidence — no fabrication.",
+      "items": {
+        "type": "object",
+        "required": ["domain", "question", "response", "weightage", "evidence"],
+        "properties": {
+          "domain": { "type": "string", "description": "Sub-domain name" },
+          "section": { "type": "string" },
+          "question": { "type": "string" },
+          "response": { "type": "string", "enum": ["Yes", "No"] },
+          "weightage": { "type": "string", "enum": ["H", "M", "L"] },
+          "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+          "evidence": { "type": "string", "description": "Concrete cited evidence (file:line or path) actually observed in the repo" },
+          "recommendation": { "type": "string" }
+        }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "description": "Questions not determinable from code — reported, never guessed, never solicited",
+      "items": {
+        "type": "object",
+        "required": ["domain", "question", "reason"],
+        "properties": {
+          "domain": { "type": "string" },
+          "section": { "type": "string" },
+          "question": { "type": "string" },
+          "reason": { "type": "string", "description": "Why it can't be proven from code (e.g. team competency, live-infra)" }
+        }
+      }
+    }
+  }
+}
