@@ -24,7 +24,7 @@ Run one command, point it at a repository, and an AI assessor walks a **340-ques
 - 🤖 **Fully automated** — the model does all the work; you never answer a question.
 - 🧾 **Evidence-based** — every Yes/No cites a real `file:line`. No hallucinations. ([guarantee ↓](#-evidence-based-guarantee))
 - 🌐 **Stack-agnostic** — Java/Spring, .NET, Python, Node.js, Go, Rust, and more.
-- 📊 **Beautiful output** — gauge, radar, doughnut & bar charts in a single HTML file (light + dark mode).
+- 📊 **Beautiful output** — gauge, radar & bar charts in a single HTML file (light + dark mode), with per-section "?" help.
 - 💸 **Economical** — gathers evidence once and reuses it, so a run stays token-light. ([details ↓](#-cost--token-economy))
 
 ## ⚙️ How it works
@@ -117,14 +117,15 @@ The assessor detects your stack and looks for that ecosystem's equivalents — a
 A single self-contained `report.html` (light + dark mode) containing:
 
 - 🎯 **Overall maturity gauge** (0–5)
-- 🍩 **Response distribution** — Yes / No / NA / Not determinable
 - 🕸️ **Maturity-by-section radar**
-- 📊 **Section-score bar** (color-coded by status)
+- 📊 **Section-score bar** (color-coded by status, with value labels)
+- 📋 **Coverage cards** — Checks in Scope · Evaluated from Code · Not Determinable · Not Applicable
 - 📋 Section & sub-domain score tables
 - 🔎 Collapsible findings — each with **cited evidence** and a recommendation
 - ❓ The list of items not determinable from code
+- ❔ A **"?" help toggle** on every section that explains how to read it
 
-> Charts load Chart.js from a CDN, so the gauge/radar/bar/doughnut need internet to render. Tables and all findings work fully offline.
+> Charts load Chart.js from a CDN, so the gauge/radar/bar need internet to render. Tables and all findings work fully offline.
 
 ## 🛡️ Evidence-based guarantee
 
