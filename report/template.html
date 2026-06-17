@@ -147,7 +147,7 @@
     </div>
   </header>
 
-  <h2 data-help="How much of the checklist could be answered from this repository. <b>Auto-evaluated</b> = answered Yes/No from cited code evidence. <b>Not determinable</b> = can't be proven from a repo (platform, live-infra, or process concerns). <b>NA</b> = doesn't apply to this repo's architecture. Only auto-evaluated questions affect the score."><span class="ico">📊</span> Coverage</h2>
+  <h2 data-help="How much of the checklist could be resolved from this repository. <b>Checks in Scope</b> = all checklist items assessed. <b>Evaluated from Code</b> = answered Yes/No from cited code evidence (these are the only ones that affect the score). <b>Not Determinable</b> = can't be proven from a repo (platform, live-infra, or process concerns). <b>Not Applicable</b> = doesn't apply to this repo's architecture."><span class="ico">📊</span> Coverage</h2>
   <div class="cards" id="coverage-cards"></div>
 
   <h2 data-help="Charts summarizing the scores. The <b>gauge</b> (top-right) is overall maturity on a 0–5 scale. The <b>radar</b> shows the shape of strengths and weaknesses across sections, and the <b>bar</b> ranks each section's score."><span class="ico">📈</span> Visual Summary</h2>
@@ -221,10 +221,10 @@
   // Coverage cards
   var c = DATA.coverage;
   var cards = [
-    ['', c.total, 'Total questions'],
-    ['accent-green', c.auto_evaluated, 'Auto-evaluated'],
-    ['accent-amber', c.not_determinable, 'Not determinable'],
-    ['accent-slate', c.na, 'Not applicable']
+    ['', c.total, 'Checks in Scope'],
+    ['accent-green', c.auto_evaluated, 'Evaluated from Code'],
+    ['accent-amber', c.not_determinable, 'Not Determinable'],
+    ['accent-slate', c.na, 'Not Applicable']
   ];
   document.getElementById('coverage-cards').innerHTML = cards.map(function (x) {
     return '<div class="card ' + x[0] + '"><div class="k">' + esc(x[1]) + '</div><div class="v">' + esc(x[2]) + '</div></div>';
