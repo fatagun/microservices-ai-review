@@ -1,4 +1,4 @@
-# /ms-audit — Automated, Evidence-Based Microservices Review
+# /ms-ai-review — Automated, Evidence-Based Microservices Review
 
 Assess a code repository against the microservices maturity checklist by **inspecting the repo directly** and produce a self-contained HTML report with charts. Works with any stack (Java/Spring, .NET, Python, Node.js, Go, Rust, …). The model does all the work — the user never answers questions.
 
