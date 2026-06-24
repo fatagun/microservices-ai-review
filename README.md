@@ -31,7 +31,7 @@ Run one command, point it at a repository, and an AI assessor walks a **340-ques
 
 ```
               ┌──────────────────────────────────────────────┐
-  /ms-audit → │ 1. Fingerprint repo (stack, manifests, infra) │
+  /ms-ai-review → │ 1. Fingerprint repo (stack, manifests, infra) │
    <repo>     │ 2. One batched evidence sweep                 │
               │ 3. Answer 340 questions from shared context   │
               └───────────────────────┬──────────────────────┘
@@ -57,8 +57,8 @@ claude                       # launch Claude Code from the repo root
 Then, inside the session:
 
 ```
-/ms-audit ../my-service                              # a local path
-/ms-audit https://github.com/acme/orders-service     # or a git URL
+/ms-ai-review ../my-service                              # a local path
+/ms-ai-review https://github.com/acme/orders-service     # or a git URL
 ```
 
 The assessor inspects the target and writes `report/report.html`. Open it in any browser. 🎉
@@ -66,11 +66,11 @@ The assessor inspects the target and writes `report/report.html`. Open it in any
 ### ⚡ Faster / cheaper runs
 
 ```
-/ms-audit ../my-service --quick               # only Mandatory sub-domains
-/ms-audit ../my-service --section "API Implementation"   # one section
+/ms-ai-review ../my-service --quick               # only Mandatory sub-domains
+/ms-ai-review ../my-service --section "API Implementation"   # one section
 ```
 
-### 🔭 Preview the report without running an audit
+### 🔭 Preview the report without running a review
 
 ```bash
 python3 report/render.py report/example-results.json report/example-report.html
@@ -139,7 +139,7 @@ These rules are **non-negotiable** and override coverage and score — under-cla
 
 ## 💸 Cost & token economy
 
-A naive "search per question × 340" run is expensive. `/ms-audit` is built to stay cheap:
+A naive "search per question × 340" run is expensive. `/ms-ai-review` is built to stay cheap:
 
 - Gathers evidence **once** (file map + one batched grep sweep) and reuses it across all questions.
 - Reads only decisive files, never twice; skips lockfiles, vendored deps, and build output.
@@ -159,7 +159,7 @@ Sub-domain & section scores are normalized to **0–5**: `(Σ weighted + max) / 
 
 | Path | Purpose |
 |---|---|
-| `.claude/commands/ms-audit.md` | The `/ms-audit` command (assessment protocol) |
+| `.claude/commands/ms-ai-review.md` | The `/ms-ai-review` command (assessment protocol) |
 | `schema/checklist.json` | The 340-question checklist (machine-readable) |
 | `schema/report.schema.json` | Data contract for `results.json` |
 | `prompts/microservices-ai-review.md` | Human-readable question catalog |

@@ -32,7 +32,7 @@ PY
 ```
 
 ### Add a stack mapping
-Extend the **Capability → signals** table in `.claude/commands/ms-audit.md` so the assessor recognizes another ecosystem's equivalent (e.g. a new circuit-breaker or messaging library).
+Extend the **Capability → signals** table in `.claude/commands/ms-ai-review.md` so the assessor recognizes another ecosystem's equivalent (e.g. a new circuit-breaker or messaging library).
 
 ### Improve the report
 - Edit `report/template.html` (self-contained: inline CSS + Chart.js via CDN).

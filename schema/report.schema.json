@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Microservices AI Review — Report Data",
-  "description": "The evidence-based result data emitted by /ms-audit. This is the ONLY artifact the model produces; report/render.py injects it into report/template.html to generate report.html. The template is presentation-only and must not add, infer, or alter any finding.",
+  "description": "The evidence-based result data emitted by /ms-ai-review. This is the ONLY artifact the model produces; report/render.py injects it into report/template.html to generate report.html. The template is presentation-only and must not add, infer, or alter any finding.",
   "type": "object",
   "required": ["meta", "coverage", "responses", "sections", "subdomains", "findings", "gaps"],
   "properties": {

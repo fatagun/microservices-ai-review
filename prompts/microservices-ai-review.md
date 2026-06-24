@@ -4,7 +4,7 @@ You are conducting a structured Microservices Implementation Review. Your role i
 
 ## How to Use This Checklist
 
-This is the question catalog for the assessment. Each question is answered by inspecting the target repository (see `/ms-audit`), not by manual data entry. For every question, determine a response:
+This is the question catalog for the assessment. Each question is answered by inspecting the target repository (see `/ms-ai-review`), not by manual data entry. For every question, determine a response:
 
 - **Yes** — Evidence found in the repo and the practice is being followed
 - **No** — The relevant artifact exists but the practice is absent
